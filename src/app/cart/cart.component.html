@@ -1,0 +1,93 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="cart-container">
+    <div class="card-table">
+        <div class="cart-product col-md-6" style="float:left;">
+            <table class="table table-responsive  table-striped ">
+                <thead *ngIf="cartItems.length>0" >
+                    <tr>
+                        <th>Sr.No</th> 
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartItems; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price | currency:"INR"  }}</td>
+                        <td>
+                            <button type="button" class="btn1" style="margin-right: 5px;" (click)="decreaseQuantity(item)">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            {{ item.quantity }}kg
+                            <button type="button" class="btn1" style="margin-left: 5px;" (click)="increaseQuantity(item)">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </td>
+                        <td>&#8377;{{ item.quantity * item.price | number:'1.2-2'   }}</td>
+                        <td>
+                            <button class="delete-button" (click)="removeFromCart(i)">
+                                <i class="fa fa-trash"></i> Delete
+                              </button>
+                              
+                        </td>
+                    </tr>
+                   
+                </tbody>
+                <tfoot>
+                    <tr *ngIf="cartItems.length>0">
+                        <td colspan="4" class="text-end">Grand Total:</td>
+                        <td>&#8377;{{getGrandTotal() | number:'1.2-2'}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div *ngIf="cartItems.length === 0" style="text-align: center;">
+                <img [src]="cartImg" alt="cart is empty"style="width: 635px;
+                height: 395px; margin-left: 310px;">
+           
+            </div>  
+            <a *ngIf="cartItems.length === 0" style="text-align: center;">
+                <img [src]="shopnow" alt="shop now"style="width: 155px;
+                height: 40px;     margin-left: 540px;
+    margin-top: 20px;
+    cursor: pointer;" routerLink="/home">
+           
+            </a>  
+        </div>
+    </div>
+</div>
+
+<div class="checkout col-md-4" *ngIf="cartItems.length > 0" style="float: right;">
+    <div class="checkoutName">Your Order</div>
+    <div class="products">
+      <ng-container *ngFor="let item of cartItems;">
+        <h4>
+          <span class="product-details">{{ item.name }} * {{ item.quantity }}</span>
+          <span class="product-total">&#8377;{{ item.quantity * item.price | number:'1.2-2' }}</span>
+        </h4>
+      </ng-container>
+      <hr>
+      <h4>
+        <span class="subtotal-label">Sub Total</span>
+        <span class="subtotal-value">&#8377;{{ getGrandTotal() | number:'1.2-2' }}</span>
+      </h4>
+      <h4>
+        <span class="shipping-label">Shipping</span>
+        <span class="shipping-value">&#8377;{{ getShippingCharge() }}</span>
+      </h4>
+      <hr>
+      <h4>
+        <span class="total-label">Total</span>
+        
+        <span class="total-value">&#8377;{{ getvaluewithshipping()  | number:'1.2-2' }}</span>
+      </h4>
+    </div>
+    <button class="btn btn-success"   routerLink="/checkout">Place Order</button>
+
+
+
+  </div>

@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <app-search-food (searchTextChanged)="onSearchTextEntered($event)"></app-search-food>
+    </div>
+    <div class="col-md-6">
+      <app-filter-food
+        [all]="getallfood()"
+        [fruits]="getfruits()"
+        [veggies]="getveggies()"
+        (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)">
+      </app-filter-food>
+     
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+    <ng-container *ngFor="let food of foods">
+        <div class="food-container col-md-4" *ngIf="((searchText === '' || food.name.toLowerCase().includes(searchText)) && (foodCountRadioButton === 'All' || foodCountRadioButton === food.type))">
+
+            <div class="food-card">
+                <div>
+                    <img [src]="food.imageUrl" style="width:220px; height:140px;">
+                </div>
+                <div class="content">
+                    <div class="food-name"><h4 style="font-weight:bold;">{{food.name}}</h4></div>
+                    <div class="food-price"> {{food.price.toLocaleString('en-IN')| currency:'INR'}}/kg </div>
+
+        
+                <!-- <div class="food-name"><h4 style="font-weight:bold;">{{food.name}}</h4></div>
+                <div class="food-price"><b>Price:</b> Rs.{{food.price}}/kg 
+                </div> -->
+                <div class="food-buttons">
+                  <button class="add-to-cart-button" (click)="addToCart(food)" *ngIf="!food.isInCart; else goToCartButton">
+              
+                      <i class="fas fa-cart-plus"></i> Add to Cart
+                   </button>
+                    <ng-template #goToCartButton>
+                      <button routerLink="/cart" class="add-to-cart-button"><i class="fas fa-shopping-cart"></i> Go to Cart</button>
+                    </ng-template>
+           
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+

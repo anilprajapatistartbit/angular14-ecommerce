@@ -1,0 +1,9 @@
+<div class="search-container">
+    <label for="searchInput">Search:</label>
+    <div class="input-container">
+      <input type="text" #searchInput [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
+      <i class="fas fa-search search-icon" (click)="focusInput(searchInput)"></i>
+    </div>
+  </div>
+  
+

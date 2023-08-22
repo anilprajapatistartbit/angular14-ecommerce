@@ -1,0 +1,22 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top:15px;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-left:10px;
+  }
+  
+  .input-container input[type="text"] {
+   
+    padding-left: 5px; 
+}
+  .search-icon {
+    position: absolute;
+    bottom: 5px; 
+    right: 10px;
+    cursor: pointer;
+  }
+  

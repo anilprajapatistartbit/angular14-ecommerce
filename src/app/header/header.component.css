@@ -1,0 +1,46 @@
+.header{
+    padding: 10px 30px;
+    background-color: #212121;
+    color:#F44336;
+    text-align:center;
+}
+.navbar{
+    display:flex;
+    background-color: #F5B041;
+}
+.site-name{
+    padding: 5px 30px;
+    color:#E74C3C;
+}
+.site-menu{
+    padding: 10px 30px;
+    margin-left: 100px;
+}
+a{
+    text-decoration: none;
+    color: #212F3D;
+    margin:0px 10px;
+}
+a:hover{
+    color:#F44336;
+
+}
+.logo{
+    width: 65px;
+    margin-right: 20px;
+}
+.siteName{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: cursive;
+}
+.cart-badge {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-badge .badge {
+    position: absolute;
+    top: -5px; 
+    right: -10px; 
+}

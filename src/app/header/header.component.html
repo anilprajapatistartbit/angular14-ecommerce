@@ -1,0 +1,21 @@
+<div class="navbar">
+    <div class="site-name">
+        <img src="./assets/logo.png" class="logo">
+        <span class="siteName">{{siteName}}</span>
+    </div>
+    <div class="site-menu">
+        <a href="#" routerLink="/home">HOME</a>
+        <a href="#" routerLink="/">ABOUT</a>
+        <a href="#" routerLink="/">CONTACT</a>
+        <div class="cart-badge">
+            <a routerLink="/cart" >CART</a>
+            <div class="badge bg-danger">{{cartItemCount}}</div>
+        </div>
+          <a href="#" routerLink="/login" >LOGIN</a>
+    </div>
+ 
+</div>
+
+<div class="header">
+    <h1>{{title| uppercase}}</h1>
+</div>

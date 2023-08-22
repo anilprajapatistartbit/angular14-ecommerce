@@ -1,0 +1,91 @@
+.delete-button {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+
+  }
+  
+  .delete-button:hover {
+    background-color: #ff3333;
+  }
+  .btn1{
+    background:rgb(94,0,0);
+    border-radius:50%;
+    font-size:16px;
+    color:#fff;
+    margin:0 8px;
+  
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 20px;
+}
+
+.shop-now {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+
+.checkoutName{
+  margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.checkout {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+
+
+.products {
+  margin-top: 10px;
+}
+
+.product-details {
+  display: inline-block;
+  width: 180px;
+}
+
+.product-total {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+  
+.subtotal-label, .shipping-label, .total-label {
+  display: inline-block;
+  width: 180px;
+  font-weight: bold;
+}
+
+.subtotal-value, .shipping-value, .total-value {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.btn-success {
+  margin-top: 15px;
+  margin-left:265px;
+  border-radius: 30px;
+}
