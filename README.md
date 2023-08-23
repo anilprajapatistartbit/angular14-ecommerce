@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # angular14-ecommerce
 
 # CUSTOMBINDING
