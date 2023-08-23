@@ -6,7 +6,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoodComponent } from './food/food.component';
 import { FilterFoodComponent } from './filter-food/filter-food.component';
 import { CartComponent } from './cart/cart.component';
@@ -17,6 +17,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +33,16 @@ import { PaymentComponent } from './payment/payment.component';
     CheckoutComponent,
     LoginComponent,
     PaymentComponent,
+    SignupComponent,
+
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

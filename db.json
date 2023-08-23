@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "signupUsers": [
+    {
+      "fullname": "Sanskriti",
+      "email": "root@123",
+      "password": "12345",
+      "mobile": 7410285632,
+      "id": 1
+    }
+  ]
+}
