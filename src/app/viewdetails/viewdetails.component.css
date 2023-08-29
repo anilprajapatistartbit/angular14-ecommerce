@@ -1,0 +1,93 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.food-detail {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.food-image {
+  position: relative;
+}
+
+.food-image img {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hidden-image {
+  display: none;
+}
+
+.food-info {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.food-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.food-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.btn1 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-right:620px;
+}
+
+.thumbnail {
+  max-width: 80px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .food-detail {
+    display: block;
+  }
+
+  .food-image,
+  .food-info {
+    width: 100%;
+  }
+}

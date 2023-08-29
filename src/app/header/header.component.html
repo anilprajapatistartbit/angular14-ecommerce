@@ -5,16 +5,24 @@
     </div>
     <div class="site-menu">
         <a href="#" routerLink="/home">HOME</a>
-        <a href="#" routerLink="/">ABOUT</a>
-        <a href="#" routerLink="/">CONTACT</a>
-        <div class="cart-badge">
+        <a href="#" routerLink="/about">ABOUT</a>
+        <a href="#" routerLink="/contact">CONTACT</a>
+        <span *ngIf="loggedInUser; else loggedIn">
+            Welcome, {{ loggedInUser.firstname }}! | <a href="#"  routerLink="/login" (click)="logout()">Logout</a>
+          </span>
+          <ng-template #loggedIn>
+            <a [routerLink]="['/login']">Login</a>
+          </ng-template>
+          
+          <div class="cart-badge">
             <a routerLink="/cart" >CART</a>
             <div class="badge bg-danger">{{cartItemCount}}</div>
         </div>
-          <a href="#" routerLink="/login" >LOGIN</a>
+        </div>
+      
     </div>
  
-</div>
+
 
 <div class="header">
     <h1>{{title| uppercase}}</h1>

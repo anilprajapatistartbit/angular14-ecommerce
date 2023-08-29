@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import {FoodService} from '../food.service';
 import { Food } from '../food/food';
 import { CartService } from '../cart.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,7 +11,7 @@ import { CartService } from '../cart.service';
 export class CartComponent {
   cartItems: Food[] = [];
  
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService,private toastr: ToastrService) {
     this.cartItems = this.cartService.getCartItems();
 
   }
@@ -27,12 +28,13 @@ export class CartComponent {
     }
     return sum;
   }
-    getFormattedGrandTotal(): string {
-    const grandTotal = this.getGrandTotal();
-    return grandTotal.toLocaleString('en-IN');
-  }
+  //   getFormattedGrandTotal(): string {
+  //   const grandTotal = this.getGrandTotal();
+  //   return grandTotal.toLocaleString('en-IN');
+  // }
   removeFromCart(index: number) {
     this.cartService.removeFromCart(index);
+    this.toastr.error("Remove from cart");
    
   }
   food: any = {

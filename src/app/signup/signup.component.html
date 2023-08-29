@@ -10,29 +10,51 @@
                 </div>
                 <form [formGroup]="signupForm" (ngSubmit)="signUp()">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                        <input formControlName="fullname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                     
+                        <label for="exampleInputEmail1" class="form-label">First Name</label>
+                        <input formControlName="firstname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="errors" *ngIf="!signupForm.controls['firstname']?.valid && (signupForm.controls['firstname']?.dirty || signupForm.controls['firstname']?.touched)">
+                          First Name is required
+                        </div>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
-                        <input formControlName="mobile" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-             
+                        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                        <input formControlName="lastname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="errors" *ngIf="!signupForm.controls['lastname']?.valid && (signupForm.controls['lastname']?.dirty || signupForm.controls['lastname']?.touched)">
+                          Last Name is required
+                        </div>
                       </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <label for="exampleInputEmail1" class="form-label">Email</label>
                       <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      <div class="errors" *ngIf="!signupForm.controls['email']?.valid && (signupForm.controls['email']?.dirty || signupForm.controls['email']?.touched)">
+                        <div *ngIf="signupForm.controls['email']?.errors?.['required']">Email is required</div>
+                        <div *ngIf="signupForm.controls['email']?.errors?.['email']">Invalid email format</div>
+                      </div>
                     </div>
+                  
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Password</label>
                       <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                      <div class="errors" *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password']?.dirty || signupForm.controls['password']?.touched)">
+                        <div *ngIf="signupForm.controls['password']?.errors?.['required']">Password is required</div>
+                        <div *ngIf="signupForm.controls['password']?.errors?.['minlength']">Password must be at least 6 characters long</div>
+                      </div>
                     </div>
-                  
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                      <input formControlName="confirmPassword" type="password" class="form-control" id="exampleInputPassword1">
+                      <div class="errors" *ngIf="!signupForm.controls['confirmPassword']?.valid && (signupForm.controls['confirmPassword']?.dirty || signupForm.controls['confirmPassword']?.touched)">
+                        <div *ngIf="signupForm.controls['confirmPassword']?.errors?.['required']">Confirm Password is required</div>
+                        <div *ngIf="signupForm.errors?.['passwordmatcherror']">Passwords do not match</div>
+                      </div>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Sign Up</button>
                   </form>
                   <a style="color: #fff;margin-top:10px;"routerLink="/login">Already registered? Click to login</a>
-            </div>
+            </div>    
         </div>
     </div>
 </div>

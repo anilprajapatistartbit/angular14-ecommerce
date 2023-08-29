@@ -1,0 +1,48 @@
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .aboutus,
+  .mission,
+  .team {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: #f7f7f7;
+  }
+  
+  .aboutus .col-md-6,
+  .mission .col-md-6,
+  .team .col-md-6 {
+    padding: 20px;
+  }
+  
+  .section-intro h1,
+  .section-mission h2,
+  .section-team h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  
+  .section-intro p,
+  .section-mission p,
+  .section-team p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .aboutus img,
+  .mission img,
+  .team img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+
+  

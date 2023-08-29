@@ -15,11 +15,21 @@
   ],
   "signupUsers": [
     {
-      "fullname": "Sanskriti",
+      "firstname": "Sanskriti",
+      "lastname": "Khandelwal",
       "email": "root@123",
-      "password": "12345",
-      "mobile": 7410285632,
+      "password": "123456",
+      "confirmPassword": "123456",
       "id": 1
+    },
+    {
+      "firstname": "Sanskar",
+      "lastname": "khandelwal",
+      "email": "root@1234",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "id": 2
     }
-  ]
+  ],
+  "contact": []
 }

@@ -1,10 +1,17 @@
-export class Food{
+export class Food {
   id!: number;
   name!: string;
   type!: string;
   price!: number;
-  imageUrl!: string;
   quantity!: number;
   available?: boolean;
-  isInCart ?: boolean;
+  isInCart!: boolean;
+  description?: string;
+  images: Image[] = []; // An array of Image objects
+}
+
+export class Image {
+  id!: number;
+  url!: string;
+  foodId!: number;
 }

@@ -1,34 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Food } from './food/food';
 import { BehaviorSubject } from 'rxjs';
-
+import { ToastrModule } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
-
-  constructor() { }
   private cartItems: Food[] = [];
   private cartItemCount = new BehaviorSubject<number>(0);
-  getCartItemCount() {
-    return this.cartItemCount.asObservable();
-  }
-  addToCart(product: Food) {
-  
-    const existingItem = this.cartItems.find(item => item.id === product.id);
 
-    if (!existingItem) {
+  constructor(private toastr: ToastrService) {
     
-      this.cartItems.push(product);
-      alert("Product is successfully added in cart");
-     this.cartItemCount.next(this.cartItems.length); 
-    } else {
-    
-      alert('Product is already added to the cart');
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      this.cartItems = JSON.parse(storedCartItems);
+      this.cartItemCount.next(this.cartItems.length);
     }
   }
 
+  getCartItemCount() {
+    return this.cartItemCount.asObservable();
+  }  
+  getCartItemsFromLocalStorage() {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      this.cartItems = JSON.parse(storedCartItems);
+      this.cartItemCount.next(this.cartItems.length);
+    }
+  }
+  addToCart(product: Food) {
+    const existingItem = this.cartItems.find(item => item.id === product.id);
+
+    if (!existingItem) {
+      this.cartItems.push(product);
+      this.updateCartInLocalStorage();
+      this.cartItemCount.next(this.cartItems.length);
+       this.toastr.success('Product is successfully added to the cart.');
+    } else {
+       this.toastr.info('Product is already added to the cart.');
+    }
+  }
+  clearCart() {
+    this.cartItems = [];
+    this.cartItemCount.next(0);
+  }
   getCartItems() {
     return this.cartItems;
   }
@@ -36,8 +52,14 @@ export class CartService {
   removeFromCart(index: number) {
     if (index >= 0 && index < this.cartItems.length) {
       this.cartItems.splice(index, 1);
-      alert("Deleted from the cart");
-      this.cartItemCount.next(this.cartItems.length); 
+      this.updateCartInLocalStorage();
+      this.cartItemCount.next(this.cartItems.length);
+      // alert("Deleted from the cart");
     }
-}
+  }
+
+  private updateCartInLocalStorage() {
+   
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
 }

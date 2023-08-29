@@ -1,0 +1,42 @@
+.container {
+    margin-top: 50px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .img-thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust the space between buttons */
+    margin-top: 5px; /* Add margin to the top */
+  }
+  
+  .btn {
+    padding: 5px 10px;
+  }
+  
+  
+  .add-food-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .add-food-button button {
+    padding: 8px 16px;
+  }
+  

@@ -44,3 +44,7 @@ a:hover{
     top: -5px; 
     right: -10px; 
 }
+.fa-cart-plus{
+    font-size: 20px;
+    color: black;
+}

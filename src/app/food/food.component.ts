@@ -11,16 +11,21 @@ import { CartService } from '../cart.service';
 export class FoodComponent implements OnInit {
   foods: Food[] = [];  
 isInCart: Boolean =false;
+p: number = 1;
   constructor(private foodService: FoodService, private cartService: CartService) {}
-
-  ngOnInit()  {
+  loadFoods() {
     this.foodService.getFoods().subscribe((foods: Food[]) => {
-      this.foods = foods; 
+      this.foods = foods;
       console.log(foods);
+      
     });
   }
-
-  addToCart(product: Food) {
+  ngOnInit()  {
+  this.loadFoods();
+    };
+  
+// food is a class
+  addToCart(product: Food) { 
     this.cartService.addToCart(product);
     product.isInCart = true;
   }
@@ -56,5 +61,24 @@ onSearchTextEntered(searchValue: string){
   this.searchText = searchValue;
   //console.log(this.searchText);
 }
+// createFood(food: Food) {
+//   this.foodService.createFood(food).subscribe((createdFood: Food) => {
+//     // Handle success or error
+//     this.loadFoods(); // Refresh the list
+//   });
+// }
 
+// updateFood(food: Food) {
+//   this.foodService.updateFood(food).subscribe((updatedFood: Food) => {
+//     // Handle success or error
+//   });
+// }
+
+// deleteFood(id: number) {
+//   this.foodService.deleteFood(id).subscribe(() => {
+//     // Handle success or error
+//     this.loadFoods(); // Refresh the list
+//   });
+// }
 }
+
