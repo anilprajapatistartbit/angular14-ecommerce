@@ -3,29 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FoodComponent } from './food/food.component';
-import { FilterFoodComponent } from './filter-food/filter-food.component';
-import { CartComponent } from './cart/cart.component';
+import { FoodComponent } from './components/food/food.component';
+import { FilterFoodComponent } from './components/filter-food/filter-food.component';
+import { CartComponent } from './components/cart/cart.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SearchFoodComponent } from './search-food/search-food.component';
+import { SearchFoodComponent } from './components/search-food/search-food.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { LoginComponent } from './login/login.component';
-import { PaymentComponent } from './payment/payment.component';
-import { SignupComponent } from './signup/signup.component';
-import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { LoginComponent } from './components/login/login.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ViewdetailsComponent } from './components/viewdetails/viewdetails.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AboutComponent } from './about/about.component';
-import { ContactFormComponent } from './contact/contact.component';
-import { FoodlistComponent } from './foodlist/foodlist.component';
-import { AddfoodComponent } from './addfood/addfood.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactFormComponent } from './components/contact/contact.component';
+import { FoodlistComponent } from './components/foodlist/foodlist.component';
+import { AddfoodComponent } from './components/addfood/addfood.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { AddfoodComponent } from './addfood/addfood.component';
     ContactFormComponent,
     FoodlistComponent,
     AddfoodComponent,
+    AdminComponent,
+    UserComponent,
 
 
 

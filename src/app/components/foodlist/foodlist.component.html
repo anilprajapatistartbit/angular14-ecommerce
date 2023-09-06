@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="container mt-5">
+    <h2><u>Food List</u></h2>
+    <div class="add-food-button">
+      <button class="btn btn-success">Add Food</button>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        
+          <th>Images</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of foods">
+          <td>{{ food.id }}</td>
+          <td>{{ food.name }}</td>
+          <td>{{ food.type }}</td>
+          <td>{{ food.price }}</td>
+          <td>{{ food.quantity }}</td>
+      
+          <td>
+            <div *ngFor="let image of food.images">
+              <img [src]="image.url" class="img-thumbnail" style="width: 50px; height: 50px;">
+            </div>
+          </td>
+          <td>
+            <div class="btn-group" role="group">
+              <button class="btn btn-warning" >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-danger" >
+                <i class="fas fa-trash"  (click)="deleteFood(food.id)"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
