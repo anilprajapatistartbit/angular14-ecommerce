@@ -29,7 +29,14 @@ import { FoodlistComponent } from './components/foodlist/foodlist.component';
 import { AddfoodComponent } from './components/addfood/addfood.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
+<<<<<<< Updated upstream
 import { TokenInterceptor } from './interceptors/token.interceptor.service';
+=======
+<<<<<<< Updated upstream
+=======
+import { TokenInterceptor } from './interceptors/token.interceptor.service';
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 import { OrderlistingComponent } from './components/orderlisting/orderlisting.component';
 import { FoodDetailsComponent } from './components/food-details/food-details.component';
 @NgModule({
@@ -52,12 +59,20 @@ import { FoodDetailsComponent } from './components/food-details/food-details.com
     AdminComponent,
     UserComponent,
     OrderlistingComponent,
+<<<<<<< Updated upstream
 
 
 
     FoodDetailsComponent,
 
+=======
+<<<<<<< Updated upstream
+    FoodDetailsComponent
+=======
+    FoodDetailsComponent,
+>>>>>>> Stashed changes
 
+>>>>>>> Stashed changes
 
 
   ],
