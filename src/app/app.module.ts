@@ -12,7 +12,7 @@ import { FilterFoodComponent } from './components/filter-food/filter-food.compon
 import { CartComponent } from './components/cart/cart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchFoodComponent } from './components/search-food/search-food.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
@@ -22,12 +22,16 @@ import { ViewdetailsComponent } from './components/viewdetails/viewdetails.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgToastModule } from 'ng-angular-popup';
 import { AboutComponent } from './components/about/about.component';
 import { ContactFormComponent } from './components/contact/contact.component';
 import { FoodlistComponent } from './components/foodlist/foodlist.component';
 import { AddfoodComponent } from './components/addfood/addfood.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
+import { TokenInterceptor } from './interceptors/token.interceptor.service';
+import { OrderlistingComponent } from './components/orderlisting/orderlisting.component';
+import { FoodDetailsComponent } from './components/food-details/food-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +51,12 @@ import { UserComponent } from './components/user/user.component';
     AddfoodComponent,
     AdminComponent,
     UserComponent,
+    OrderlistingComponent,
+
+
+
+    FoodDetailsComponent,
+
 
 
 
@@ -60,9 +70,17 @@ import { UserComponent } from './components/user/user.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxImageZoomModule ,
-    ToastrModule.forRoot()
+    NgToastModule,
+    ToastrModule.forRoot(),
+    
   ],
-  providers: [CurrencyPipe],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptor,
+    multi:true,
+
+  
+  }, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

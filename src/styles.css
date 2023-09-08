@@ -3,7 +3,8 @@
 @import 'ngx-toastr/toastr';
 @import '~alertifyjs/build/css/alertify.min.css';
 @import '~alertifyjs/build/css/themes/default.min.css';
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+/* @import 'css/custom.css'; */
 *{
     margin: 0px 0px;
     padding: 0px 0px;

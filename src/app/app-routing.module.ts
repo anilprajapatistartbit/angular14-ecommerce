@@ -15,13 +15,15 @@ import { AboutComponent } from './components/about/about.component';
 import { FoodlistComponent } from './components/foodlist/foodlist.component';
 import { AddfoodComponent } from './components/addfood/addfood.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { OrderlistingComponent } from './components/orderlisting/orderlisting.component';
+import { FoodDetailsComponent } from './components/food-details/food-details.component';
 
 
 
 
 
 const routes: Routes = [
-  { path: 'cart', component: CartComponent,canActivate: [authGuard] },
+  { path: 'cart', component: CartComponent },
   { path: 'home', component: FoodComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'login', component: LoginComponent},
@@ -29,6 +31,11 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactFormComponent},
   { path: 'foodlist', component: FoodlistComponent},
+  { path: 'orderlist', component: OrderlistingComponent},
+
+  { path: 'fooddetails', component: FoodDetailsComponent},
+
+
   { path: 'addfood', component: AddfoodComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'viewdetail/:id', component: ViewdetailsComponent},

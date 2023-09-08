@@ -1,50 +1,131 @@
-
-
-  .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
- 
-    /* background-color: hsla(205, 46%, 30%, 1); */
-  }
-  
-  .card {
-    width: 500px;
-    padding: 40px;
-    background-color: hsla(205, 46%, 30%, 1);
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    float: right;
-    margin-top: 13px;
-  
-    margin-right: -700px;
+.fr {
+  display: block;
+  float: right;
 }
-  
-  
-  .card h1, .card h6 {
-    color: #fff;
-  }
-  
-  label {
-    color: #fff;
-  }
-  
 
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
-  .errors{
-    color:red;
-  }
+.outer {
+  height: 100vh;
+  background: linear-gradient(to top, #c9c9ff 50%, #6e6ef6 90%) no-repeat;
+}
 
-  
+.panel-heading {
+  text-align: center;
+  margin-bottom: 10px
+}
+
+#forgot {
+  min-width: 100px;
+  margin-left: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none
+}
+
+.form-inline label {
+  padding-left: 10px;
+  margin: 0;
+  cursor: pointer
+}
+
+.btn {
+  margin-top: 20px;
+  border-radius: 15px
+}
+
+.panel {
+  min-height: 380px;
+  box-shadow: 20px 20px 80px rgb(218, 218, 218);
+  border-radius: 12px;
+  margin-top: 100px
+}
+
+.input-field {
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  color: #4343ff
+}
+
+.input-field.error {
+  border: 1px solid red;
+  color: red;
+}
+
+input[type='text'],
+input[type='password'] {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 100%
+}
+
+.fa-eye-slash.btn {
+  border: none;
+  outline: none;
+  box-shadow: none
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative
+}
+
+
+/* a[target='_blank'] {
+position: relative;
+transition: all 0.1s ease-in-out
+} */
+
+.bordert {
+  border-top: 1px solid #aaa;
+  position: relative
+}
+
+.bordert:after {
+  content: "or connect with";
+  position: absolute;
+  top: -13px;
+  left: 33%;
+  background-color: #fff;
+  padding: 0px 8px
+}
+
+@media(max-width: 360px) {
+  #forgot {
+      margin-left: 0;
+      padding-top: 10px
+  }
+  body {
+      height: 100%
+  }
+  .container {
+      margin: 30px 0
+  }
+  .bordert:after {
+      left: 25%
+  }
+}
+
+
+/* Added Css for eye icon button */
+
+.bg-white {
+  background: none;
+  border: none;
+}
+
+
+/* added height css for ngtoast */
+
+.toast-right-top {
+  height: auto !important;
+}

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { ApiService } from 'src/app/services/api.service.service';
+
 
 @Component({
   selector: 'app-header',
@@ -17,8 +19,12 @@ export class HeaderComponent implements OnInit {
   title: string = "Grocery List";
   siteName: string = "Easy Grocery";
   cartItemCount: number = 0;
-  loggedInUser: any | null = null; 
-  constructor(private authService: AuthService,private cartService: CartService, public foodService: FoodService, private router: Router,
+  userName: string | null = null;
+  public users:any = [];
+  public role!:string;
+
+  public fullName : string = "";
+  constructor(private authService: AuthService,private api : ApiService,private cartService: CartService, public foodService: FoodService, private router: Router,
     private toastr: ToastrService) {}
 
   ngOnInit() {
@@ -27,9 +33,7 @@ export class HeaderComponent implements OnInit {
       this.cartItemCount = count;
     });
 
-    this.authService.loggedInUser$.subscribe(user => {
-      this.loggedInUser = user;
-    });
+
   }
 
 updateLoggedInUser(): void {
@@ -37,13 +41,8 @@ updateLoggedInUser(): void {
   this.loggedInUser = userString ? JSON.parse(userString) : null;
 }
 
-  logout(): void {
-    this.cartService.clearCart();
 
-    localStorage.removeItem('loggedInUser');
-    this.updateLoggedInUser();
-    this.router.navigate(['/login']); 
-    this.toastr.error("Logout Successfully" );
-    
+ 
   }
-}
+
+
