@@ -4,15 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../../helper/validationform';
 import { NgToastService } from 'ng-angular-popup';
-<<<<<<< Updated upstream
-import { ToastrService } from 'ngx-toastr';
-=======
 
-<<<<<<< Updated upstream
-=======
 import { ToastrService } from 'ngx-toastr';
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+
+
 
 @Component({
   selector: 'app-login',
@@ -24,21 +20,19 @@ export class LoginComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
-<<<<<<< Updated upstream
 
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
+
   userName: string | null = null;
 
->>>>>>> Stashed changes
+
+
+
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
     private toast: NgToastService,
-<<<<<<< Updated upstream
+
 
   
     private toastr:ToastrService
@@ -47,29 +41,19 @@ export class LoginComponent implements OnInit {
 
   
 
-=======
-<<<<<<< Updated upstream
+
    
-=======
+
   
-    private toastr:ToastrService
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
   ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-<<<<<<< Updated upstream
+
 
       email: ['', Validators.required],
 
-=======
-<<<<<<< Updated upstream
-      username: ['', Validators.required],
-=======
-      email: ['', Validators.required],
->>>>>>> Stashed changes
->>>>>>> Stashed changes
       password: ['', Validators.required],
     });
   }
@@ -84,11 +68,7 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);
       this.auth.signIn(this.loginForm.value).subscribe({
         next: (res) => {
-<<<<<<< Updated upstream
 
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
           console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.accessToken);
@@ -100,11 +80,7 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           this.toast.error({detail:"ERROR", summary:"Something when wrong!", duration: 5000});
-<<<<<<< Updated upstream
 
-=======
-=======
->>>>>>> Stashed changes
           this.toastr.success('Login Success');
           this.loginForm.reset();
           this.auth.storeToken(res.accessToken);
@@ -117,27 +93,10 @@ export class LoginComponent implements OnInit {
           this.toast.success({ detail: "SUCCESS", summary: res.message, duration: 5000 });
           this.router.navigate(['home'])
         },
-        error: (err) => {
-          this.toast.error({ detail: "ERROR", summary: "Something when wrong!", duration: 5000 });
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-          console.log(err);
-        },
-      });
-    } else {
+      
+     else {
       ValidateForm.validateAllFormFields(this.loginForm);
     }
   }
-<<<<<<< Updated upstream
 
-
-=======
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }

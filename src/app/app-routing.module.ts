@@ -32,18 +32,11 @@ const routes: Routes = [
   { path: 'contact', component: ContactFormComponent},
   { path: 'foodlist', component: FoodlistComponent},
   { path: 'orderlist', component: OrderlistingComponent},
-<<<<<<< Updated upstream
+
 
   { path: 'fooddetails', component: FoodDetailsComponent},
 
 
-=======
-<<<<<<< Updated upstream
-  { path: 'fooddetails', component: FoodDetailsComponent,  data: { selectedOrder: null }},
-=======
-  { path: 'fooddetails', component: FoodDetailsComponent},
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   { path: 'addfood', component: AddfoodComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'viewdetail/:id', component: ViewdetailsComponent},

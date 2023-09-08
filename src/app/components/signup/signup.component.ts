@@ -29,7 +29,7 @@ constructor(private formBuilder : FormBuilder,private authService: AuthService, 
 }
 
 
-<<<<<<< Updated upstream
+
   public signUpForm!: FormGroup;
   type: string = 'password';
   isText: boolean = false;
@@ -78,34 +78,5 @@ constructor(private formBuilder : FormBuilder,private authService: AuthService, 
     });
   }
   
-=======
-  // Create a payload with user data
-  const userData = {
-    firstname: this.signUpForm.value.firstname,
-    lastname: this.signUpForm.value.lastname,
-    mobile: String(this.signUpForm.value.mobile), // Convert to string if needed
-    email: this.signUpForm.value.email,
-    password: this.signUpForm.value.password,
-    confirmPassword: this.signUpForm.value.confirmPassword,
-  };
 
-  // Make a POST request to the API
-  this.http.post<any>('https://localhost:7005/api/auth/signup', userData)
-    .subscribe(
-      (res) => {
-        console.log('Response:', res); // Log the response
-        this.toastr.success('SignUp Successfully');
-        this.signUpForm.reset();
-        this.router.navigate(['/login']);
-        this.onRegistrationSuccess(userData);
-      },
-      (err) => {
-        console.error('Error:', err); // Log the error
-        if (err.error && err.error.errors) {
-          console.log('Validation errors:', err.error.errors);
-        }
-        this.toastr.error('Something went wrong');
-      }
-    );
->>>>>>> Stashed changes
 }

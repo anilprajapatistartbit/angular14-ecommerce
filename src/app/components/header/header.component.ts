@@ -32,36 +32,16 @@ export class HeaderComponent implements OnInit {
     this.cartService.getCartItemCount().subscribe(count => {
       this.cartItemCount = count;
     });
-<<<<<<< Updated upstream
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
   }
 
-updateLoggedInUser(): void {
-  const userString = localStorage.getItem('loggedInUser');
-  this.loggedInUser = userString ? JSON.parse(userString) : null;
+
 }
 
 
-<<<<<<< Updated upstream
  
   }
-=======
-    localStorage.removeItem('loggedInUser');
-    this.updateLoggedInUser();
-    this.router.navigate(['/login']); 
-    this.toastr.error("Logout Successfully" );
-=======
-    this.api.getUsers()
-    .subscribe(res=>{
-    this.users = res;
-    });
->>>>>>> Stashed changes
-    
-    this.updateUserInfo();
+
     
   
 
@@ -80,6 +60,5 @@ updateLoggedInUser(): void {
   }
  
   }
->>>>>>> Stashed changes
 
 
