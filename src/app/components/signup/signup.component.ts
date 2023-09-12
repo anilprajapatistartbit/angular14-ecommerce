@@ -46,26 +46,29 @@ export class SignupComponent implements OnInit {
     this.isText ? (this.type = 'text') : (this.type = 'confirmpassword');
   }
 
-  onSubmit() {
-    if (this.signUpForm.valid) {
-      const signUpData = this.signUpForm.value;
-      
+ 
 
-      // Call your AuthService's signup method to make the API request
-      this.authService.signup(signUpData).subscribe(
-        (res) => {
-          // Registration successful
-          console.log(res.message);
-          this.toastr.success('Registration successful', 'Success');
-          this.signUpForm.reset();
-          this.router.navigate(['login']);
-        },
-        (err) => {
-          // Registration failed
-          console.error(err?.error?.message || 'An error occurred during registration.');
-          this.toastr.error('Registration failed', 'Error');
-        }
-      );
-    }
+onSubmit() {
+  if (this.signUpForm.valid) {
+    const signUpData = this.signUpForm.value;
+
+    // Call your AuthService's signup method to make the API request
+    this.authService.signup(signUpData).subscribe(
+      (res) => {
+        // Registration successful
+        console.log(res.message);
+        // Store the first name in local storage
+        localStorage.setItem('firstName', signUpData.firstName);
+        this.signUpForm.reset();
+       this.toastr.success("SignUp Successfully");
+        this.router.navigate(['login']);
+      },
+      (err) => {
+        // Registration failed
+        this.toastr.error(err?.error?.message || 'An error occurred during registration.');
+      }
+    );
   }
 }
+}
+

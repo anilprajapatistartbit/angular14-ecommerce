@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@auth0/angular-jwt": "^5.1.2",
-    "@stripe/stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^2.1.2",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^5.3.1",
     "jspdf": "^2.5.1",

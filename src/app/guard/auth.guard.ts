@@ -2,7 +2,7 @@
   import { ToastrService } from 'ngx-toastr';
 
   export const authGuard: CanActivateFn = (route, state) => {
-    let loggedInUser = localStorage.getItem("loggedInUser");
+    const loggedInUser = localStorage.getItem('loggedInUser');
 
     if (!loggedInUser) {
       alert("Not authorized user");

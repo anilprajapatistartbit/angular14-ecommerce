@@ -1,31 +1,32 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div class="navbar">
     <div class="site-name">
         <img src="./assets/logo.png" class="logo">
-        <span class="siteName">{{siteName}}</span>
+        <span class="siteName">{{ siteName }}</span>
     </div>
     <div class="site-menu">
         <a href="#" routerLink="/home">HOME</a>
         <a href="#" routerLink="/about">ABOUT</a>
         <a href="#" routerLink="/contact">CONTACT</a>
-        <span *ngIf="userName; else loggedIn">
-            Welcome, {{userName}} | <a href="#"  routerLink="/login" (click)="logout()">Logout</a>
-          </span>
-          <ng-template #loggedIn>
+        
+        <!-- Check if user is logged in -->
+        <ng-container *ngIf="userName; else loggedIn">
+            <span>Welcome, {{ userName }} |</span>
+            <a href="#" routerLink="/login" (click)="logout()">Logout</a>
+        </ng-container>
+        
+        <!-- Display "Login" link if user is not logged in -->
+        <ng-template #loggedIn>
             <a [routerLink]="['/login']">Login</a>
-          </ng-template>
-          
-          <div class="cart-badge">
-            <a routerLink="/cart" ><i class="fas fa-shopping-cart" style="font-size:20px;"></i></a>
-            <div class="badge bg-danger">{{cartItemCount}}</div>
+        </ng-template>
+        
+        <div class="cart-badge">
+            <a routerLink="/cart"><i class="fas fa-shopping-cart" style="font-size:20px;"></i></a>
+            <div class="badge bg-danger">{{ cartItemCount }}</div>
         </div>
-        </div>
-      
     </div>
- 
-
+</div>
 
 <div class="header">
-    <h1>{{title| uppercase}}</h1>
+    <h1>{{ title | uppercase }}</h1>
 </div>

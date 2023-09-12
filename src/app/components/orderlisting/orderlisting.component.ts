@@ -11,7 +11,7 @@ import { FoodService } from 'src/app/services/food.service';
 export class OrderlistingComponent {
   orders: any[] = [];
   selectedOrder: any;
-
+  p: number = 1;
 
   constructor(private apiService: ApiService,private foodService:FoodService,private router :Router) {}
 

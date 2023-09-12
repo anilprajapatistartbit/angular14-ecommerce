@@ -18,7 +18,14 @@ export class CartService {
       this.cartItemCount.next(this.cartItems.length);
     }
   }
-
+  calculateTotal(): number {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+  
+  calculateQuantity(): number {
+    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
+  }
+  
   getCartItemCount() {
     return this.cartItemCount.asObservable();
   }  

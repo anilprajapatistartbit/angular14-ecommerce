@@ -17,18 +17,20 @@ import { AddfoodComponent } from './components/addfood/addfood.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { OrderlistingComponent } from './components/orderlisting/orderlisting.component';
 import { FoodDetailsComponent } from './components/food-details/food-details.component';
+import { ThankyouComponent } from './components/thankyou/thankyou.component';
 
 
 
 
 
 const routes: Routes = [
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent,canActivate:[authGuard] },
   { path: 'home', component: FoodComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'thankyou', component: ThankyouComponent},
   { path: 'contact', component: ContactFormComponent},
   { path: 'foodlist', component: FoodlistComponent},
   { path: 'orderlist', component: OrderlistingComponent},

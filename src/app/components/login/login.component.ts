@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router,
     private toast: NgToastService,
     private toastr: ToastrService
@@ -41,41 +41,29 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.auth.signIn(this.loginForm.value).subscribe({
+      this.authService.signIn(this.loginForm.value).subscribe({
         next: (res) => {
           // Success block
           console.log(res.message);
           this.loginForm.reset();
-          this.auth.storeToken(res.accessToken);
+          this.authService.storeToken(res.accessToken);
+           this.toastr.success("Login Success")
+          // Retrieve the first name from the signup form if available
+          const firstName = this.loginForm.get('firstName')?.value || '';
 
-          // Store user information in localStorage
-          localStorage.setItem('loggedInUser', JSON.stringify(res.user));
+          // Store the first name in local storage
+          localStorage.setItem('firstName', firstName);
 
-          const tokenPayload = this.auth.decodedToken();
-          this.toastr.success('Login Success');
+          // Redirect to the home page after successful login
           this.router.navigate(['home']);
         },
         error: (err) => {
           // Error block
-          this.toast.error({
-            detail: 'ERROR',
-            summary: 'Something went wrong!',
-            duration: 5000,
-          });
+      this.toastr.error(err?.error?.message || 'An error occurred during login.');
           this.loginForm.reset();
           // Handle any other error-specific logic here
         },
       });
-    } else {
-      // Validate the form fields if it's not valid
-      ValidateForm.validateAllFormFields(this.loginForm);
     }
   }
-  logout() {
-    // Clear the user information from localStorage
-    localStorage.removeItem('loggedInUser');
-  
-  
-  }
-  
 }

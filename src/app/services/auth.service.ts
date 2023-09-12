@@ -1,64 +1,91 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import {JwtHelperService} from '@auth0/angular-jwt'
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { TokenApiModel } from '../models/token-api.model';
-import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   private baseUrl: string = 'https://localhost:7005/api/auth/';
-  private userPayload:any;
+  private userPayload: any;
+  private userDataSubject = new BehaviorSubject<any>(null);
+  private userIdSubject = new BehaviorSubject<number | null>(null);
   constructor(private http: HttpClient, private router: Router) {
     this.userPayload = this.decodedToken();
-   }
+  }
 
   signup(userObj: any): Observable<any> {
-    return this.http.post<any>("https://localhost:7005/api/auth/register", userObj)
+    return this.http.post<any>(`${this.baseUrl}register`, userObj);
+  }
+  signIn(loginObj: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj).pipe(
+      tap((res) => {
+        if (res && res.accessToken) {
+          this.storeToken(res.accessToken);
+        
+          this.userDataSubject.next(res);
+          this.userIdSubject.next(res.userId);
+          localStorage.setItem('loggedInUser', JSON.stringify(res));
+        }
+      })
+    );
+  }
+  getUserDataObservable(): Observable<any> {
+    return this.userDataSubject.asObservable();
+  }
+  getUserIdObservable(): Observable<number | null> {
+    return this.userIdSubject.asObservable();
   }
 
-  signIn(loginObj : any): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj)
-  }
+  // Rest of your AuthService methods...
 
-  signOut(){
+  // Add a method to get the user's ID
+  getUserId(): number | null {
+    return this.userIdSubject.value;
+  }
+  signOut() {
     localStorage.clear();
-    this.router.navigate(['login'])
+    this.router.navigate(['login']);
   }
 
-  storeToken(tokenValue: string){
-    localStorage.setItem('token', tokenValue)
-  }
-  
-
-  getToken(){
-    return localStorage.getItem('token')
-  }
-  
-  isLoggedIn(): boolean{
-    return !!localStorage.getItem('token')
+  storeToken(tokenValue: string) {
+    localStorage.setItem('token', tokenValue);
   }
 
-  decodedToken(){
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  decodedToken() {
     const jwtHelper = new JwtHelperService();
-    const token = this.getToken()!;
-    console.log(jwtHelper.decodeToken(token))
-    return jwtHelper.decodeToken(token)
+    const token = this.getToken() || '';
+    return jwtHelper.decodeToken(token);
   }
 
-  getfullNameFromToken(){
-    if(this.userPayload)
-    return this.userPayload.name;
+  getUserFirstNameFromLocalStorage(): string | null {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+  
+    if (loggedInUser) {
+      const userObject = JSON.parse(loggedInUser);
+      return userObject.firstName;
+    }
+  
+    return null; 
   }
 
-  getRoleFromToken(){
-    if(this.userPayload)
-    return this.userPayload.role;
-  }
 
-  renewToken(tokenApi : TokenApiModel){
-    return this.http.post<any>(`${this.baseUrl}refresh`, tokenApi)
+ 
+
+  renewToken(tokenApi: TokenApiModel) {
+    return this.http.post<any>(`${this.baseUrl}refresh`, tokenApi);
   }
 }
