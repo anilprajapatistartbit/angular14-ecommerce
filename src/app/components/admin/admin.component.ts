@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service.service'; // Import your API service
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,13 +12,22 @@ export class AdminComponent implements OnInit {
   public role!: string;
   public users: any = [];
 
-  constructor(private api: ApiService) {} // Inject your API service here
+  constructor(private api: ApiService,private authService:AuthService,private cartService:CartService) {} // Inject your API service here
 
   ngOnInit() {
-    this.api.getUsers().subscribe((res: any) => {
-      this.role = res.role; // Extract the user's role from the response
-      this.users = res.users; // Assuming there is a 'users' property in the response
-    });
-      
+   
+    };
+      isDropdownOpen: boolean = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  } 
+  logout() {
+    this.authService.signOut();
+   
   }
-}
+  clearCart(){
+    this.cartService.clearCart();
+  }
+  }
+

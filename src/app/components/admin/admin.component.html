@@ -1,25 +1,13 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-</html>
-
-<body >
-    <div class="header"></div>
-    <input type="checkbox" id="openSidebarMenu">
-    <label for="openSidebarMenu" class="sidebarIconToggle">
-        <div class="spinner top"></div>
-        <div class="spinner middle"></div>
-        <div class="spinner bottom"></div>
-    </label>
-    <div id="sidebarMenu"  >
-        <ul class="menu">
-            <li ><a href="">Home</a></li>
-            <li ><a href="">Products</a></li>
-            <li ><a href="">Orders</a></li>
-            <li ><a href="">Users</a></li>
-            <li ><a href="">Logout</a></li>
-        </ul>
+<div class="sidebar">
+    <div class="dropdown" [ngClass]="{'open': isDropdownOpen}" (click)="toggleDropdown()">
+      <a  class="dropbtn">Products &#9660;</a>
+      <div class="dropdown-content" *ngIf="isDropdownOpen">
+        <a href="" routerLink="/foodlist">Product List</a>
+        <a href="#" routerLink="/addfood">Add Product</a>
+        <a href="#">Edit Product</a>
+      </div>
     </div>
-   
-</body>
+    <a href="#">Orders</a>
+    <a href="#" routerLink="/userlist">User Listing</a>
+    <a href="#" routerLink="/login" (click)="logout();">Logout</a>
+  </div>

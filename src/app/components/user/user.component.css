@@ -1,0 +1,22 @@
+.table {
+    width: 88%;
+    margin-left:195px;
+  }
+  
+  h2 {
+    text-align: center; 
+    margin-bottom: 20px;
+    margin-top:120px;
+  }
+  
+ 
+  th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

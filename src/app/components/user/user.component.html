@@ -1,1 +1,30 @@
-<p>user works!</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<app-admin></app-admin>
+<div class="container mt-5">
+    <h2><u>Users List</u></h2>
+   
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+        
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of User">
+          <td>{{ user.firstName}}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

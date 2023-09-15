@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FoodService} from '../../services/food.service';
 import { Food } from '../../models/food';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-food',
@@ -12,7 +13,7 @@ export class FoodComponent implements OnInit {
   foods: Food[] = [];  
 isInCart: Boolean =false;
 p: number = 1;
-  constructor(private foodService: FoodService, private cartService: CartService) {}
+  constructor(private foodService: FoodService, private cartService: CartService,private authService:AuthService) {}
   loadFoods() {
     this.foodService.getFoods().subscribe((foods: Food[]) => {
       this.foods = foods;
@@ -22,6 +23,7 @@ p: number = 1;
   }
   ngOnInit()  {
   this.loadFoods();
+ 
     };
   
 // food is a class
@@ -61,24 +63,6 @@ onSearchTextEntered(searchValue: string){
   this.searchText = searchValue;
   //console.log(this.searchText);
 }
-// createFood(food: Food) {
-//   this.foodService.createFood(food).subscribe((createdFood: Food) => {
-//     // Handle success or error
-//     this.loadFoods(); // Refresh the list
-//   });
-// }
 
-// updateFood(food: Food) {
-//   this.foodService.updateFood(food).subscribe((updatedFood: Food) => {
-//     // Handle success or error
-//   });
-// }
-
-// deleteFood(id: number) {
-//   this.foodService.deleteFood(id).subscribe(() => {
-//     // Handle success or error
-//     this.loadFoods(); // Refresh the list
-//   });
-// }
 }
 

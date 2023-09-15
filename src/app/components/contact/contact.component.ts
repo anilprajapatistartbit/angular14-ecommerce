@@ -32,12 +32,12 @@ export class ContactFormComponent {
             this.contactForm.reset();
             this.router.navigate(['/home']);
           } else {
-            console.log("Unexpected response:", res); // Log the unexpected response
+            console.log("Unexpected response:", res); 
             alert("Something went wrong");
           }
         },
         err => {
-          console.error(err); // Log the error to the console
+          console.error(err);
           if (err.error && err.error.errors) {
             console.log("Validation errors:", err.error.errors);
           }

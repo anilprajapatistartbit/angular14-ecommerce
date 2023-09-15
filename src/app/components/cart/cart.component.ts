@@ -15,14 +15,7 @@ export class CartComponent {
     this.cartItems = this.cartService.getCartItems();
 
   }
-  calculateTotal(): number {
-    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  }
-  
-  calculateQuantity(): number {
-    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
-  }
-  
+
   
 
  cartImg="./assets/emptycart.png"

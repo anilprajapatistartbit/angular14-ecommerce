@@ -12,12 +12,12 @@
         <!-- Check if user is logged in -->
         <ng-container *ngIf="userName; else loggedIn">
             <span>Welcome, {{ userName }} |</span>
-            <a href="#" routerLink="/login" (click)="logout()">Logout</a>
+            <a href="#" routerLink="/login" (click)="logout(); clearCart()">Logout</a>
         </ng-container>
         
         <!-- Display "Login" link if user is not logged in -->
         <ng-template #loggedIn>
-            <a [routerLink]="['/login']">Login</a>
+            <a [routerLink]="['/login']" (click)="clearCart()">Login</a>
         </ng-template>
         
         <div class="cart-badge">

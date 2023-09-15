@@ -42,12 +42,7 @@ export class AuthService {
     return this.userIdSubject.asObservable();
   }
 
-  // Rest of your AuthService methods...
-
-  // Add a method to get the user's ID
-  getUserId(): number | null {
-    return this.userIdSubject.value;
-  }
+ 
   signOut() {
     localStorage.clear();
     this.router.navigate(['login']);
@@ -82,9 +77,27 @@ export class AuthService {
     return null; 
   }
 
-
+  getUserId(): number | null {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+  
+    if (loggedInUser) {
+      const userObject = JSON.parse(loggedInUser);
+      return userObject.userId;
+    }
+  
+    return null;
+  }
  
-
+  getUserRole(): string | null {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+  
+    if (loggedInUser) {
+      const userObject = JSON.parse(loggedInUser);
+      return userObject.role;
+    }
+  
+    return null;
+  }
   renewToken(tokenApi: TokenApiModel) {
     return this.http.post<any>(`${this.baseUrl}refresh`, tokenApi);
   }

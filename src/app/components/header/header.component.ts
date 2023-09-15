@@ -29,9 +29,13 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+clearCart(){
+  this.cartService.clearCart();
 
+}
   logout() {
     this.authService.signOut();
+    localStorage.removeItem('cartItems');
     this.userName = null;
   }
 }

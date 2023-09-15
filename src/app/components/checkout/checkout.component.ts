@@ -6,7 +6,7 @@ import { CartService } from '../../services/cart.service';
 import { ApiService } from 'src/app/services/api.service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class CheckoutComponent {
   defaultCountry: string = 'india';
   defaultgender: string = 'Male';
+
   apiUrl = 'https://localhost:7005/api/stripe';
   endpoint = `${this.apiUrl}/create-session`;
   gender = [
@@ -23,19 +24,20 @@ export class CheckoutComponent {
     { id: '2', value: 'Female' },
     { id: '3', value: 'Other' }
   ];
-
+  orderID: number=0;
   public myForm!: FormGroup;
-
+  id: string | null = null;
   constructor(
     private cartService: CartService,
     private apiService: ApiService,
     private authService: AuthService,
     private fb: FormBuilder,
-    private http: HttpClient,
-    private router:Router
+   private route:ActivatedRoute,
+    private http : HttpClient
   ) {}
 
   ngOnInit() {
+    
     // Initialize the form controls and group them into the FormGroup
     this.myForm = this.fb.group({
       firstname: ['', Validators.required], // First Name with required validation
@@ -49,19 +51,25 @@ export class CheckoutComponent {
       phone: [''], // Phone
       zip: [''] // Zip Code
     });
+    this.route.queryParamMap.subscribe(param => {
+      this.id = param.get('session_id');
+    });
   }
-
-  initiateStripePayment() {
+  async initiateStripePayment(cartItems: any[]) {
     try {
-      const total = this.cartService.calculateTotal();
-      this.http.post(this.endpoint, { totalPrice: total }).subscribe((response: any) => {
-        const sessionUrl = response.sessionurl;
+      const orderDataList = cartItems.map(item => ({
+        totalPrice: item.price ,
+        foodName: item.name,
+        Quantity: item.quantity,
+        foodId:item.id,
+        userId:this.authService.getUserId(),
+
+     
+      }));
   
-        // Use the Router service to navigate to the Stripe Checkout page
-        this.router.navigateByUrl(sessionUrl);
-      }, (error) => {
-        console.error(error);
-      });
+      const response: any = await this.http.post(this.endpoint, orderDataList).toPromise();
+      const sessionUrl = response.sessionurl;
+      window.location.href = sessionUrl;
     } catch (error) {
       console.error(error);
     }
@@ -69,37 +77,58 @@ export class CheckoutComponent {
   
 
   onSubmit() {
+  const cartItems=this.cartService.getCartItems();
     const userId = this.authService.getUserId();
-    const cartItems = this.cartService.getCartItems();
-    const total = this.cartService.calculateTotal();
+    console.log(userId);
 
-    const quantity = this.cartService.calculateQuantity();
+    // Get cart items from localStorage
+    const cartItemsJson = localStorage.getItem('cartItems');
 
-    // Create an array to store order objects
-    const orders = [];
+    if (cartItemsJson) {
+      const cartItems = JSON.parse(cartItemsJson);
+      console.log(cartItems);
+      
+      // Prepare the order data
+      const orders = [];
 
-    // Iterate through cart items and create an order object for each item
-    for (const item of cartItems) {
-      const order = {
-        userId: Number(userId),
-        foodId: Number(item.id),
-        firstName: this.myForm.get('firstname')?.value,
-        quantity: quantity, // Use item.quantity from the cart item
-        totalPrice: total
-      };
+      for (const cartItem of cartItems) {
+        const order = {
+          userId: userId,
+          totalPrice: cartItem.price * cartItem.quantity,
+        };
 
-      // Push the order object to the orders array
-      orders.push(order);
-    }
+        // Push the order object to the orders array
+        orders.push(order);
+      }
 
-    console.log('Order Data:', orders);
+      console.log('Order Data:', orders);
 
-    // Call the initiateStripePayment method
-    this.initiateStripePayment();
+      // Define the API endpoint URL where you want to send the order data
+      const apiUrl = 'https://localhost:7005/api/stripe/success/' + this.id;
 
+      // Make an HTTP POST request to your API to send the order data
+      this.http.post(apiUrl, { sessionId: this.id, foods: cartItems, userId: userId }).subscribe(
+        (response) => {
+          console.log('API Response:', response);
+        },
+        (error) => {
+          console.error('API Error:', error);
+        }
+      );
+      }
+  
+
+
+ 
+ 
+        
+      this.initiateStripePayment(cartItems);
+    
     // Generate PDF
     this.generatePDF(this.myForm.value);
-  }
+    }
+  
+
 
   generatePDF(formData: any): void {
     const doc = new jsPDF();

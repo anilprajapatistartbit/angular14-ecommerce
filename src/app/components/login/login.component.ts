@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../../helper/validationform';
 import { NgToastService } from 'ng-angular-popup';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -22,14 +23,16 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private toast: NgToastService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartService :CartService
   ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email],],
       password: ['', Validators.required],
     });
+ 
   }
 
   hideShowPass() {
@@ -41,19 +44,17 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
+     
+    
       this.authService.signIn(this.loginForm.value).subscribe({
         next: (res) => {
           // Success block
           console.log(res.message);
           this.loginForm.reset();
           this.authService.storeToken(res.accessToken);
+          
            this.toastr.success("Login Success")
-          // Retrieve the first name from the signup form if available
-          const firstName = this.loginForm.get('firstName')?.value || '';
-
-          // Store the first name in local storage
-          localStorage.setItem('firstName', firstName);
-
+       
           // Redirect to the home page after successful login
           this.router.navigate(['home']);
         },
