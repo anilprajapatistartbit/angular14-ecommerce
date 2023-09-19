@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Order } from 'src/app/models/order';
 import { ApiService } from 'src/app/services/api.service.service';
 import { FoodService } from 'src/app/services/food.service';
 
@@ -10,14 +11,15 @@ import { FoodService } from 'src/app/services/food.service';
 })
 export class OrderlistingComponent {
   orders: any[] = [];
-  selectedOrder: any;
+  selectedOrder: Order | null = null;
+
   p: number = 1;
 
   constructor(private apiService: ApiService,private foodService:FoodService,private router :Router) {}
 
   ngOnInit() {
     // Fetch orders and populate the orders array
-    this.apiService.getOrders().subscribe(
+    this.apiService.getOrder().subscribe(
       (response) => {
         console.log('API Response:', response); 
         this.orders = response;
@@ -27,12 +29,8 @@ export class OrderlistingComponent {
       }
     );
   }
-  
-
- 
-  seeItem(selectedOrder: any) {
-   
-    this.router.navigate(['/fooddetails', { selectedOrder: JSON.stringify(selectedOrder) }]);
-    
+  navigateToOrderDetails(orderId: number) {
+    // Use the router to navigate to the order details page with the order ID as a parameter
+    this.router.navigate(['/fooddetails', orderId]);
   }
 }

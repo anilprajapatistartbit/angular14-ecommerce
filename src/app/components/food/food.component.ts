@@ -20,7 +20,7 @@ p: number = 1;
       console.log(foods);
       
     });
-  }
+  }       
   ngOnInit()  {
   this.loadFoods();
  

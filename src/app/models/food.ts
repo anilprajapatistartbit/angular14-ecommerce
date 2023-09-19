@@ -14,4 +14,5 @@ export class Image {
   id!: number;
   url!: string;
   foodId!: number;
+ 
 }

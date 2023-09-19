@@ -8,47 +8,64 @@
             <div class="col-md-6">
               <label for="fname">First Name</label>
               <input type="text" id="fname" formControlName="firstname" placeholder="Your first name..">
-             
             </div>
             <div class="col-md-6">
               <label for="lname">Last Name</label>
               <input type="text" id="lname" formControlName="lastname" placeholder="Your last name..">
             </div>
           </div>
+
           <label for="gender">Gender: &nbsp;</label>
           <span *ngFor="let gen of gender">
             <input type="radio" [id]="gen.id" [value]="gen.value" formControlName="gender">
             <label [for]="gen.id">{{ gen.value }} &nbsp;</label>
           </span><br>
+
           <label for="country">Country</label>
           <select id="country" formControlName="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-            <option value="india">India</option>
-            <option value="uk">UK</option>
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <option value="Usa">USA</option>
+            <option value="India">India</option>
+            <option value="Uk">UK</option>
           </select>
+
           <label for="city">City</label>
           <input type="text" id="city" formControlName="city">
+
           <label for="state">State</label>
           <select id="state" formControlName="state">
-            <option value="rajasthan">Rajasthan</option>
-            <option value="california">California</option>
-            <option value="columbia">Columbia</option>
-            <option value="scotland">Scotland</option>
-            <option value="gujarat">Gujarat</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="California">California</option>
+            <option value="Columbia">Columbia</option>
+            <option value="Scotland">Scotland</option>
+            <option value="Gujarat">Gujarat</option>
           </select>
-          <label for="streetName">Street Address</label>
-          <input type="text" id="streetName" formControlName="streetName" placeholder="Your address">
+
+          <label for="streetAddress">Street Address</label>
+          <input type="text" id="streetAddress" formControlName="streetAddress" placeholder="Your address">
+
           <label for="email">Email</label>
           <input type="email" id="email" formControlName="email" placeholder="Your email..">
+
           <label for="phone">Phone</label>
           <input type="tel" id="phone" formControlName="phone" placeholder="Your phone number..">
-          <label for="zip">Zip Code</label>
-          <input type="text" id="zip" formControlName="zip" placeholder="Your zip code..">
+
+          <label for="zipCode">Zip Code</label>
+          <input type="text" id="zipCode" formControlName="zipCode" placeholder="Your zip code..">
+
+            <!-- <div *ngIf="selectedAddress">
+            <h3>Selected Address</h3>
+            <p>{{ selectedAddress.country }}, {{ selectedAddress.state }}, {{ selectedAddress.city }}, {{ selectedAddress.streetAddress }}, {{ selectedAddress.zipCode }}</p>
+          </div> -->
+
           <input type="submit" value="Submit and Pay" id="btn">
         </form>
+  
+
       </div>
     </div>
-  </div>
+    <div class="col-md-6">
+    <app-address ></app-address>
+    </div>
 </div>

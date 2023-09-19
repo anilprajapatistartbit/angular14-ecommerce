@@ -19,6 +19,10 @@ import { OrderlistingComponent } from './components/orderlisting/orderlisting.co
 import { FoodDetailsComponent } from './components/food-details/food-details.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { UserComponent } from './components/user/user.component';
+import { AddressComponent } from './components/address/address.component';
+import { UseraddressComponent } from './components/useraddress/useraddress.component';
+import { AddaddressComponent } from './components/addaddress/addaddress.component';
+
 
 
 
@@ -36,14 +40,18 @@ const routes: Routes = [
   { path: 'contact', component: ContactFormComponent},
   { path: 'foodlist', component: FoodlistComponent},
   { path: 'orderlist', component: OrderlistingComponent},
-
+  { path: 'useraddress/:id', component: UseraddressComponent },
   { path: 'userlist', component: UserComponent},
+  { path: 'addaddress', component: AddaddressComponent},
 
 
-  { path: 'fooddetails', component: FoodDetailsComponent},
+
+
+  { path: 'fooddetails/:orderId', component: FoodDetailsComponent},
 
 
   { path: 'addfood', component: AddfoodComponent},
+  { path: 'address', component: AddressComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'viewdetail/:id', component: ViewdetailsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }

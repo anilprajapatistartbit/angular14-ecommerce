@@ -1,8 +1,9 @@
-<h2>Food Details</h2>
+<h2>Order Details</h2>
 <table class="table">
   <thead>
     <tr>
       <th>Sno</th>
+      <th>Id</th>
       <th>Name</th>
       <th>Price</th>
       <th>Quantity</th>
@@ -10,12 +11,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>{{ selectedOrder.id }}</td>
-      <td>{{ foodDetails.name }}</td>
-      <td>{{ foodDetails.price }}</td>
-      <td>{{ selectedOrder.orderedQuantity }}</td>
-      <td>{{ selectedOrder.totalPrice }}</td>
+    <tr *ngFor="let orderItem of orderDetails.orderItems; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ orderItem.foodId }}</td>
+      <td>{{orderItem.food.name}}</td>
+      <td>{{ orderItem.price }}</td>
+      <td>{{ orderItem.quantity }}</td>
+      <td>{{ orderItem.price*orderItem.quantity }}</td>
     </tr>
   </tbody>
 </table>

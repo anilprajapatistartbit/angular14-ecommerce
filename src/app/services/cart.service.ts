@@ -93,8 +93,8 @@ export class CartService {
 
 
   // Update cart data in local storage
-  private updateCartInLocalStorage() {
+ updateCartInLocalStorage() {
     localStorage.setItem(`cartItems_${this.userId}`, JSON.stringify(this.cartItems));
-     // Include the user ID in the key
+  
   }
 }

@@ -1,10 +1,12 @@
+import { Food } from "./food";
 
-  // order.model.ts
+
 export class Order {
   userId!: number;
   orderDate!: Date;
   currency!: string;
   totalPrice!: number;
+  billingdetailsid!:number;
   }
 
   export class OrderItem {
@@ -13,5 +15,6 @@ export class Order {
     foodId!: number;
     quantity!: number;
     price!: number;
+    food!:Food;
   }
   

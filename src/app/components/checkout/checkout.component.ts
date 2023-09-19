@@ -6,7 +6,9 @@ import { CartService } from '../../services/cart.service';
 import { ApiService } from 'src/app/services/api.service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { AddressService } from 'src/app/services/address.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,11 +16,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  defaultCountry: string = 'india';
+  defaultCountry: string = 'India';
   defaultgender: string = 'Male';
 
-  apiUrl = 'https://localhost:7005/api/stripe';
-  endpoint = `${this.apiUrl}/create-session`;
+
   gender = [
     { id: '1', value: 'Male' },
     { id: '2', value: 'Female' },
@@ -26,109 +27,118 @@ export class CheckoutComponent {
   ];
   orderID: number=0;
   public myForm!: FormGroup;
-  id: string | null = null;
+  public addressData: any;
+  selectedAddress: any; 
   constructor(
     private cartService: CartService,
     private apiService: ApiService,
-    private authService: AuthService,
+  
     private fb: FormBuilder,
-   private route:ActivatedRoute,
-    private http : HttpClient
+    private addressService: AddressService,
+   private toastr:ToastrService,
+    private http : HttpClient,
+    private auth:AuthService,
+    private router:Router
   ) {}
 
   ngOnInit() {
     
-    // Initialize the form controls and group them into the FormGroup
-    this.myForm = this.fb.group({
-      firstname: ['', Validators.required], // First Name with required validation
-      lastname: [''], // Last Name
-      gender: ['', Validators.required], // Gender with required validation
-      country: [''], // Country
-      city: [''], // City
-      state: [''], // State
-      streetName: [''], // Street Address
-      email: ['', [Validators.required, Validators.email]], // Email with required and email format validation
-      phone: [''], // Phone
-      zip: [''] // Zip Code
-    });
-    this.route.queryParamMap.subscribe(param => {
-      this.id = param.get('session_id');
-    });
-  }
-  async initiateStripePayment(cartItems: any[]) {
-    try {
-      const orderDataList = cartItems.map(item => ({
-        totalPrice: item.price ,
-        foodName: item.name,
-        Quantity: item.quantity,
-        foodId:item.id,
-        userId:this.authService.getUserId(),
 
-     
-      }));
-  
-      const response: any = await this.http.post(this.endpoint, orderDataList).toPromise();
-      const sessionUrl = response.sessionurl;
-      window.location.href = sessionUrl;
-    } catch (error) {
-      console.error(error);
-    }
+    this.myForm = this.fb.group({
+      firstname: ['', Validators.required], 
+      lastname: [''], 
+      gender: ['', Validators.required],
+      country: [''], 
+      city: [''], 
+      state: [''],
+      streetAddress: ['',Validators.required], 
+      email: ['', [Validators.required, Validators.email]],
+      phone: [''], 
+      zipCode: ['',Validators.required] 
+    });
+    this.addressService.selectedAddress$.subscribe((address) => {
+      this.selectedAddress = address;
+      console.log(this.selectedAddress);
+    })
   }
+
   
 
   onSubmit() {
-  const cartItems=this.cartService.getCartItems();
-    const userId = this.authService.getUserId();
-    console.log(userId);
-
-    // Get cart items from localStorage
-    const cartItemsJson = localStorage.getItem('cartItems');
-
-    if (cartItemsJson) {
-      const cartItems = JSON.parse(cartItemsJson);
-      console.log(cartItems);
-      
-      // Prepare the order data
-      const orders = [];
-
-      for (const cartItem of cartItems) {
-        const order = {
-          userId: userId,
-          totalPrice: cartItem.price * cartItem.quantity,
-        };
-
-        // Push the order object to the orders array
-        orders.push(order);
-      }
-
-      console.log('Order Data:', orders);
-
-      // Define the API endpoint URL where you want to send the order data
-      const apiUrl = 'https://localhost:7005/api/stripe/success/' + this.id;
-
-      // Make an HTTP POST request to your API to send the order data
-      this.http.post(apiUrl, { sessionId: this.id, foods: cartItems, userId: userId }).subscribe(
-        (response) => {
-          console.log('API Response:', response);
-        },
-        (error) => {
-          console.error('API Error:', error);
-        }
-      );
-      }
   
+   
+    const userId=this.auth.getUserId();
+    console.log(this.myForm.value);
+    console.log(this.myForm.value.country,this.myForm.value.state);
 
+    // this.apiService.createBilling(this.myForm.value).subscribe(
+    //   (response) => {
+    //     if (response && response.message === 'Billing data saved successfully') {
+    //       this.toastr.success('Billing Added Successfully');
+    //       localStorage.setItem('billingId', response.billingId.toString());
+     
+    //       this.myForm.reset();
+    //     } else {
+    //       console.log('Unexpected response:', response);
+    //       alert('Something went wrong');
+    //     }
+    //   },
+    //   (error) => {
+    //     console.error('Error saving billing data:', error);
+    //     if (error.error && error.error.errors) {
+    //       console.log('Validation errors:', error.error.errors);
+    //     }
+    //     alert('Something went wrong');
+    //   }
+    // );
 
- 
- 
+    // this.http.post("https://localhost:7005/api/addresses", {
+    //   userId:userId,
+    //   country: this.myForm.value.country,
+    //   state: this.myForm.value.state,
+    //   city:this.myForm.value.city,
+    //   streetAddress:this.myForm.value.streetAddress,
+    //   zipCode:this.myForm.value.zipCode
+
+      
+    // }, { responseType: 'text' })
+    // .subscribe(
+    //   res => {
+    //     if (res === 'Address saved successfully') {
+    //       this.toastr.success("Address Added Successfully");
+      
+    //       this.myForm.reset();
+    //     } else {
+    //       console.log("Unexpected response:", res);
+    //       alert("Something went wrong");
+    //     }
+    //   },
+    //   err => {
+    //     console.error(err);
+    //     if (err.error && err.error.errors) {
+    //       console.log("Validation errors:", err.error.errors);
+    //     }
+    //     alert("Something went wrong");
+    //   }
+    // );
+  
+    this.router.navigate(['/useraddress', userId]);
         
-      this.initiateStripePayment(cartItems);
+     
     
     // Generate PDF
     this.generatePDF(this.myForm.value);
     }
   
-
+    updateBillingForm(selectedAddress: any) {
+      this.myForm.patchValue({
+        country: selectedAddress.country,
+        state: selectedAddress.state,
+        city: selectedAddress.city,
+        streetAddress: selectedAddress.streetAddress,
+        zipCode: selectedAddress.zipCode
+      });
+    }
 
   generatePDF(formData: any): void {
     const doc = new jsPDF();
@@ -147,7 +157,7 @@ export class CheckoutComponent {
       Country: ${formData.country}
       City: ${formData.city}
       State: ${formData.state}
-      Street Address: ${formData.streetName}
+      Street Address: ${formData.streetAddress}
       Phone: ${formData.phone}
     `;
 
@@ -196,4 +206,5 @@ export class CheckoutComponent {
 
     doc.save('invoice.pdf');
   }
+  
 }

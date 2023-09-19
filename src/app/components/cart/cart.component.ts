@@ -16,7 +16,6 @@ export class CartComponent {
 
   }
 
-  
 
  cartImg="./assets/emptycart.png"
  
@@ -28,10 +27,7 @@ export class CartComponent {
     }
     return sum;
   }
-  //   getFormattedGrandTotal(): string {
-  //   const grandTotal = this.getGrandTotal();
-  //   return grandTotal.toLocaleString('en-IN');
-  // }
+
   removeFromCart(index: number) {
     this.cartService.removeFromCart(index);
     this.toastr.error("Remove from cart");
@@ -44,12 +40,17 @@ export class CartComponent {
   decreaseQuantity(food: any) {
     if (food.quantity > 1) {
       food.quantity--;
+      this.updateCartItems();
     }
   }
   
 increaseQuantity(food: any) {
   food.quantity++;
+  this.updateCartItems();
 }
+ private updateCartItems() {
+    this.cartService.updateCartInLocalStorage();
+  }
 getShippingCharge(): number | string {
   const total = this.getTotalPrice();
 

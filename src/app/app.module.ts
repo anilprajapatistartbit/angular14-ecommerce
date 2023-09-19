@@ -30,6 +30,12 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderlistingComponent } from './components/orderlisting/orderlisting.component';
 import { FoodDetailsComponent } from './components/food-details/food-details.component';
+import { AddressComponent } from './components/address/address.component';
+import { UseraddressComponent } from './components/useraddress/useraddress.component';
+import { AddaddressComponent } from './components/addaddress/addaddress.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +58,9 @@ import { FoodDetailsComponent } from './components/food-details/food-details.com
     UserComponent,
     OrderlistingComponent,
     FoodDetailsComponent,
+    AddressComponent,
+    UseraddressComponent,
+    AddaddressComponent
   ],
   imports: [
     BrowserModule,

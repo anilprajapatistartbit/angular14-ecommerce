@@ -30,40 +30,45 @@ export class ThankyouComponent implements OnInit {
     console.log(userId);
 const cartItem=this.cartService.getCartItems();
 console.log(cartItem);
+const billingid=localStorage.getItem('billingId');
+console.log(billingid);
     // Get cart items from localStorage
-    const cartItemsJson = localStorage.getItem('cartItems');
+    // const cartItemsJson = localStorage.getItem('cartItems');
 
-    if (cartItemsJson) {
-      const cartItems = JSON.parse(cartItemsJson);
-      console.log(cartItems);
+    // if (cartItemsJson) {
+    //   const cartItems = JSON.parse(cartItemsJson);
+    //   console.log(cartItems);
       
-      // Prepare the order data
-      const orders = [];
+    //   // Prepare the order data
+    //   const orders = [];
 
-      for (const cartItem of cartItems) {
-        const order = {
-          userId: userId,
-          totalPrice: cartItem.price * cartItem.quantity,
-        };
+    //   for (const cartItem of cartItems) {
+    //     const order = {
+    //       userId: userId,
+    //       totalPrice: cartItem.price * cartItem.quantity,
+    //     };
 
-        // Push the order object to the orders array
-        orders.push(order);
-      }
+    //     // Push the order object to the orders array
+    //     orders.push(order);
+    //   }
 
-      console.log('Order Data:', orders);
+      // console.log('Order Data:', orders);
 
       // Define the API endpoint URL where you want to send the order data
       const apiUrl = 'https://localhost:7005/api/stripe/success/' + this.id;
 
       // Make an HTTP POST request to your API to send the order data
-      this.http.post(apiUrl, { sessionId: this.id, foods: cartItems, userId: userId }).subscribe(
+      this.http.post(apiUrl, { sessionId: this.id, foods: cartItem, userId: userId,BillingId:billingid }).subscribe(
         (response) => {
           console.log('API Response:', response);
+          localStorage.removeItem('cartItems_');
+          localStorage.removeItem('billingId');
         },
         (error) => {
           console.error('API Error:', error);
+
         }
       );
     }
   }
-}
+
