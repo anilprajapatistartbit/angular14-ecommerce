@@ -38,4 +38,20 @@ clearCart(){
     localStorage.removeItem('cartItems');
     this.userName = null;
   }
+  showDropdown: boolean = false;
+
+toggleDropdown(event: Event) {
+    event.preventDefault(); // Prevent default link behavior
+    this.showDropdown = !this.showDropdown;
+}
+
+reloadPage(): void {
+  this.router.navigateByUrl('/about').then(() => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  });
+}
+// Add the rest of your component code here
+
 }

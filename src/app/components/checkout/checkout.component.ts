@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import { CartService } from '../../services/cart.service';
 import { ApiService } from 'src/app/services/api.service.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
+import { Food } from 'src/app/models/food';
 
 @Component({
   selector: 'app-checkout',
@@ -17,194 +16,190 @@ import { AddressService } from 'src/app/services/address.service';
 })
 export class CheckoutComponent {
   defaultCountry: string = 'India';
-  defaultgender: string = 'Male';
-
-
+  defaultGender: string = 'Male';
+  cartItems: Food[] = [];
   gender = [
-    { id: '1', value: 'Male' },
-    { id: '2', value: 'Female' },
-    { id: '3', value: 'Other' }
+    { id: 'male', value: 'Male' },
+    { id: 'female', value: 'Female' },
+    { id: 'other', value: 'Other' }
   ];
-  orderID: number=0;
+  
   public myForm!: FormGroup;
-  public addressData: any;
-  selectedAddress: any; 
+  public addressData!: any[];
+  selectedAddress: any;
+  apiUrl = 'https://localhost:7005/api/stripe';
+  endpoint = `${this.apiUrl}/create-session`;
+
+
   constructor(
     private cartService: CartService,
     private apiService: ApiService,
-  
     private fb: FormBuilder,
     private addressService: AddressService,
-   private toastr:ToastrService,
-    private http : HttpClient,
-    private auth:AuthService,
-    private router:Router
-  ) {}
+    private toastr: ToastrService,
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
+  }
 
   ngOnInit() {
-    
-
     this.myForm = this.fb.group({
-      firstname: ['', Validators.required], 
-      lastname: [''], 
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       gender: ['', Validators.required],
-      country: [''], 
-      city: [''], 
-      state: [''],
-      streetAddress: ['',Validators.required], 
       email: ['', [Validators.required, Validators.email]],
-      phone: [''], 
-      zipCode: ['',Validators.required] 
+      phone: ['', Validators.required],
     });
-    this.addressService.selectedAddress$.subscribe((address) => {
-      this.selectedAddress = address;
-      console.log(this.selectedAddress);
-    })
+    this.cartItems = this.cartService.getCartItems();
+
+    // Fetch user addresses here
+    this.fetchUserAddresses();
   }
 
+  fetchUserAddresses() {
+    const userId = this.auth.getUserId();
+    if (userId !== null) {
+      this.apiService.getAddressByUser(userId).subscribe(
+        (data: any[]) => {
+          this.addressData = data;
+          console.log("Address data by user ID:", data);
+        },
+        (error) => {
+          console.error('Error fetching address data:', error);
+        }
+      );
+    }
+  }
+  getGrandTotal() {
+    let sum = 0;
+    for (const item of this.cartItems) {
+      sum += item.quantity * item.price;
+    }
+    return sum;
+  }
+  onAddressSelected(selectedAddress: any) {
   
+    console.log("Selected address:", selectedAddress);
 
+
+    
+    this.selectedAddress = selectedAddress;
+  }
+  async initiateStripePayment(cartItems: any[]) {
+    try {
+      const orderDataList = cartItems.map(item => ({
+        totalPrice: item.price,
+        foodName: item.name,
+        Quantity: item.quantity,
+        foodId: item.id,
+        userId: this.auth.getUserId(),
+      }));
+
+      const response: any = await this.http.post(this.endpoint, orderDataList).toPromise();
+      const sessionUrl = response.sessionurl;
+      window.location.href = sessionUrl;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getShippingCharge(): number | string {
+    const total = this.getTotalPrice();
+  
+    if (total < 500 && total >200) {
+      return (total * 0.02).toFixed(2);
+    } else if (total >= 500) {
+      return (total * 0.05).toFixed(2);
+    } else {
+      return 0;
+    }
+  }
+  getTotalPrice(): number {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+  getvaluewithshipping(): string {
+    const shippingCharge = Number(this.getShippingCharge());
+    const grandTotal = Number(this.getGrandTotal());
+  
+    if (shippingCharge !== 0) {
+      const totalValue = shippingCharge + grandTotal;
+      return totalValue.toFixed(2);
+    } else {
+      return this.getGrandTotal().toFixed(2);
+    }
+  }
+  
   onSubmit() {
+    const cartItems=this.cartService.getCartItems();
+    if (!this.addressData || this.addressData.length === 0) {
+
+      this.router.navigate(['/addaddress']);
+      return;
+    }
+  
+    if (!this.selectedAddress) {
+ 
+      this.toastr.success('Please select an address before submitting.');
+      return; 
+    }
+    const billingAddress = this.mapAddressToBilling(this.selectedAddress);
+
+    
+    const formData = {
+      ...this.myForm.value,
+      ...billingAddress 
+    };
+console.log(formData);
+    // Send formData to the server
+    this.apiService.createBilling(formData).subscribe(
+      (response) => {
+        if (response && response.id) { // Assuming 'id' is the property representing the billing details ID
+          this.toastr.success('Billing Added Successfully');
+          
+          // Extract the billingId and store it in local storage
+          const billingId = response.id;
+          localStorage.setItem('billingId', billingId.toString());
+    
+          // You can now retrieve it later using localStorage.getItem('billingId')
+           
+          // this.initiateStripePayment(cartItems);
+          this.myForm.reset();
+        } else {
+          console.log('Unexpected response:', response);
+          alert('Something went wrong');
+        }
+      },
+      (error) => {
+        // Handle any error here
+        console.error('Error:', error);
+        alert('An error occurred while adding billing data');
+      }
+    );
+    
+    }
+    onPlaceOrder() {
+    
+  
+      const cartItems = this.cartService.getCartItems();
+  
+      if (!this.selectedAddress) {
+        this.toastr.warning('Please select an address before placing an order.');
+        return;
+      }
   
    
-    const userId=this.auth.getUserId();
-    console.log(this.myForm.value);
-    console.log(this.myForm.value.country,this.myForm.value.state);
-
-    // this.apiService.createBilling(this.myForm.value).subscribe(
-    //   (response) => {
-    //     if (response && response.message === 'Billing data saved successfully') {
-    //       this.toastr.success('Billing Added Successfully');
-    //       localStorage.setItem('billingId', response.billingId.toString());
-     
-    //       this.myForm.reset();
-    //     } else {
-    //       console.log('Unexpected response:', response);
-    //       alert('Something went wrong');
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error('Error saving billing data:', error);
-    //     if (error.error && error.error.errors) {
-    //       console.log('Validation errors:', error.error.errors);
-    //     }
-    //     alert('Something went wrong');
-    //   }
-    // );
-
-    // this.http.post("https://localhost:7005/api/addresses", {
-    //   userId:userId,
-    //   country: this.myForm.value.country,
-    //   state: this.myForm.value.state,
-    //   city:this.myForm.value.city,
-    //   streetAddress:this.myForm.value.streetAddress,
-    //   zipCode:this.myForm.value.zipCode
-
-      
-    // }, { responseType: 'text' })
-    // .subscribe(
-    //   res => {
-    //     if (res === 'Address saved successfully') {
-    //       this.toastr.success("Address Added Successfully");
-      
-    //       this.myForm.reset();
-    //     } else {
-    //       console.log("Unexpected response:", res);
-    //       alert("Something went wrong");
-    //     }
-    //   },
-    //   err => {
-    //     console.error(err);
-    //     if (err.error && err.error.errors) {
-    //       console.log("Validation errors:", err.error.errors);
-    //     }
-    //     alert("Something went wrong");
-    //   }
-    // );
-  
-    this.router.navigate(['/useraddress', userId]);
-        
-     
-    
-    // Generate PDF
-    this.generatePDF(this.myForm.value);
+      this.initiateStripePayment(cartItems);
+      this.cartService.removeFromCart;
     }
   
-    updateBillingForm(selectedAddress: any) {
-      this.myForm.patchValue({
-        country: selectedAddress.country,
-        state: selectedAddress.state,
-        city: selectedAddress.city,
-        streetAddress: selectedAddress.streetAddress,
-        zipCode: selectedAddress.zipCode
-      });
-    }
-
-  generatePDF(formData: any): void {
-    const doc = new jsPDF();
-
-    let xOffset = 10;
-    let yOffset = 10;
-
-    // Add a title to the PDF
-    doc.setFontSize(16);
-    doc.text('Invoice', xOffset, yOffset);
-    yOffset += 10;
-
-    doc.setFontSize(12);
-    const billingDetails = `
-      Name: ${formData.firstname} ${formData.lastname}
-      Country: ${formData.country}
-      City: ${formData.city}
-      State: ${formData.state}
-      Street Address: ${formData.streetAddress}
-      Phone: ${formData.phone}
-    `;
-
-    const columnWidth = doc.internal.pageSize.getWidth() / 2 - 15;
-    const billingDetailsArray = billingDetails.split('\n');
-    const halfLength = Math.ceil(billingDetailsArray.length / 2);
-    const leftColumn = billingDetailsArray.slice(0, halfLength).join('\n');
-    const rightColumn = billingDetailsArray.slice(halfLength).join('\n');
-
-    doc.text(leftColumn, xOffset, yOffset);
-    doc.text(rightColumn, xOffset + columnWidth + 30, yOffset);
-    yOffset += Math.max(leftColumn.split('\n').length, rightColumn.split('\n').length) * 12;
-
-    const cartItems = this.cartService.getCartItems();
-
-    doc.setFontSize(14);
-    doc.text('Cart Items:', xOffset, yOffset);
-    yOffset += 10;
-
-    const columns = ['Item Name', 'Item Price', 'Quantity', 'Subtotal'];
-
-    const data = cartItems.map(item => [
-      item.name,
-      `Rs. ${item.price.toFixed(2)}`,
-      item.quantity,
-      `Rs. ${(item.price * item.quantity).toFixed(2)}`
-    ]);
-
-    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-
-    data.push(['Total', '', '', `Rs. ${totalPrice.toFixed(2)}`]);
-
-    autoTable(doc, {
-      head: [columns],
-      body: data,
-      startY: yOffset,
-      theme: 'grid',
-      margin: { top: 15 },
-      columnStyles: {
-        0: { cellWidth: 70 },
-        1: { cellWidth: 30 },
-        2: { cellWidth: 30 },
-        3: { cellWidth: 30 }
-      }
-    });
-
-    doc.save('invoice.pdf');
+  private mapAddressToBilling(address: any): any {
+    return {
+      country: address.country,
+      state: address.state,
+      city: address.city,
+      streetAddress: address.streetAddress,
+      zipCode: address.zipCode
+    };
   }
-  
 }

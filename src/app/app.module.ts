@@ -33,8 +33,15 @@ import { FoodDetailsComponent } from './components/food-details/food-details.com
 import { AddressComponent } from './components/address/address.component';
 import { UseraddressComponent } from './components/useraddress/useraddress.component';
 import { AddaddressComponent } from './components/addaddress/addaddress.component';
-
-
+import {NgConfirmModule} from 'ng-confirm-box';
+import { OrderbyuserComponent } from './components/orderbyuser/orderbyuser.component';
+import { FooddetailsbyuserComponent } from './components/fooddetailsbyuser/fooddetailsbyuser.component';
+import { EditproductComponent } from './components/editproduct/editproduct.component';
+import { AdminheaderComponent } from './components/adminheader/adminheader.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FoodTypeFilterPipe } from './food-filter.pipe';
+import { NgArrayPipesModule } from 'ngx-pipes';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -60,7 +67,14 @@ import { AddaddressComponent } from './components/addaddress/addaddress.componen
     FoodDetailsComponent,
     AddressComponent,
     UseraddressComponent,
-    AddaddressComponent
+    AddaddressComponent,
+    OrderbyuserComponent,
+    FooddetailsbyuserComponent,
+    EditproductComponent,
+    AdminheaderComponent,
+    FooterComponent,
+    FoodTypeFilterPipe,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +87,10 @@ import { AddaddressComponent } from './components/addaddress/addaddress.componen
     NgxImageZoomModule,
     NgToastModule,
     ToastrModule.forRoot(),
+    NgConfirmModule,
+    NgArrayPipesModule
+    
+  
   ],
   providers: [
     {

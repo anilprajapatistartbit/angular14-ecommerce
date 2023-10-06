@@ -1,13 +1,15 @@
+
+
 <div class="sidebar">
     <div class="dropdown" [ngClass]="{'open': isDropdownOpen}" (click)="toggleDropdown()">
       <a  class="dropbtn">Products &#9660;</a>
       <div class="dropdown-content" *ngIf="isDropdownOpen">
         <a href="" routerLink="/foodlist">Product List</a>
         <a href="#" routerLink="/addfood">Add Product</a>
-        <a href="#">Edit Product</a>
+    
       </div>
     </div>
-    <a href="#">Orders</a>
+    <a href="#" routerLink="/orderlist">Orders</a>
     <a href="#" routerLink="/userlist">User Listing</a>
-    <a href="#" routerLink="/login" (click)="logout();">Logout</a>
+    <a href="#"  routerLink="/login" (click)="logout()">Logout</a>
   </div>

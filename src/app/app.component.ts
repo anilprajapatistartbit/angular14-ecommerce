@@ -22,8 +22,8 @@ export class AppComponent {
     
 }
 shouldDisplayHeader(): boolean {
-  const excludedRoutes = [ 'admin','userlist','foodlist','addproduct'];
-  // Check if the current route is 'thankyou' (adjust the route path as needed)
+  const excludedRoutes = [ 'admin','userlist','foodlist','addproduct','addfood','orderlist','fooddetails','userfood','editproduct'];
+ 
   return !excludedRoutes.some(route => this.router.url.includes(route));
   
 }

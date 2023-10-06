@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class CartService {
   private cartItems: Food[] = [];
+  private Wishlist: Food[] = [];
   private cartItemCount = new BehaviorSubject<number>(0);
   // private cartLockKey = 'cartLock';
   private _stripeTransactionId: string = ''; 
@@ -16,7 +17,7 @@ export class CartService {
   constructor(private toastr: ToastrService,private authService: AuthService) {
     //this.userId = this.authService.getUserId(); // Get the user ID from your authentication service
     this.getCartItemsFromLocalStorage();
-
+    this.getWishlistItemsFromLocalStorage();
   }
 
   calculateTotal(): number {
@@ -50,7 +51,13 @@ export class CartService {
       this.cartItemCount.next(this.cartItems.length);
     }
   }
-
+  getWishlistItemsFromLocalStorage() {
+    const storedCartItems = localStorage.getItem(`wishlist_${this.userId}`); // Include the user ID in the key
+    if (storedCartItems) {
+      this.Wishlist = JSON.parse(storedCartItems);
+     
+    }
+  }
   addToCart(product: Food) {
     // Check if the cart is locked
     // if (this.isCartLocked()) {
@@ -81,12 +88,23 @@ export class CartService {
     return this.cartItems;
   }
 
+  getWishlistItems() {
+    return this.Wishlist;
+  }
   removeFromCart(index: number) {
     if (index >= 0 && index < this.cartItems.length) {
       this.cartItems.splice(index, 1);
       this.updateCartInLocalStorage();
       this.cartItemCount.next(this.cartItems.length);
       // alert("Deleted from the cart");
+    }
+  }
+  removeFromWishlist(index: number) {
+    if (index >= 0 && index < this.Wishlist.length) {
+      this.Wishlist.splice(index, 1);
+      this.updateWishlistInLocalStorage();
+    
+
     }
   }
 
@@ -96,5 +114,24 @@ export class CartService {
  updateCartInLocalStorage() {
     localStorage.setItem(`cartItems_${this.userId}`, JSON.stringify(this.cartItems));
   
+  }
+  addToWishlist(product: Food) {
+    // Assuming cartItems and userId are correctly initialized
+    const existingItem = this.Wishlist.find((item) => item.id === product.id);
+  
+    if (!existingItem) {
+      this.Wishlist.push(product);
+      console.log('Item added to wishlist:', product);
+      this.updateWishlistInLocalStorage(); // Make sure this function is called
+     
+      this.toastr.success('Product is successfully added to the wishlist.');
+    } else {
+      this.toastr.info('Product is already added to the wishlist.');
+    }
+  }
+  
+  updateWishlistInLocalStorage() {
+    // Use Wishlist to store in localStorage
+    localStorage.setItem(`wishlist_${this.userId}`, JSON.stringify(this.Wishlist));
   }
 }

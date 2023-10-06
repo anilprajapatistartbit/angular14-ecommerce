@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+<!-- 
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -15,10 +15,10 @@
      
     </div>
   </div>
-</div>
+</div> -->
 
 
-<div class="row">
+<!-- <div class="row">
     <ng-container *ngFor="let food of foods |  paginate: { itemsPerPage: 6, currentPage: p }">
         <div class="food-container col-md-4" *ngIf="((searchText === '' || food.name.toLowerCase().includes(searchText)) && (foodCountRadioButton === 'All' || foodCountRadioButton === food.type))">
 
@@ -52,5 +52,141 @@
     <div class="pagination-container">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+</div> -->
+
+
+<div class="hero-wrap hero-bread" style="background-image: url('assets/bg_1.jpg');">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span></p>
+        <h1 class="mb-0 bread">Products</h1>
+      </div>
+    </div>
+  </div>
 </div>
 
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 mb-5 text-center">
+        <ul class="product-category">
+          <li><a href="#" [class.active]="selectedType === 'All'" (click)="filterType('All')">All</a></li>
+          <li><a href="#" [class.active]="selectedType === 'Veggies'" (click)="filterType('Veggies')">Vegetables</a></li>
+          <li><a href="#" [class.active]="selectedType === 'Fruits'" (click)="filterType('Fruits')">Fruits</a></li>
+        </ul>
+      </div>
+    </div> 
+    <div class="row equal-height-row">
+      <ng-container *ngFor="let food of foods | foodTypeFilter:selectedType | paginate: { itemsPerPage: 8, currentPage: p }">
+        <div class="col-md-6 col-lg-3 ftco-animate equal-height-col" *ngIf="((searchText === '' || food.name.toLowerCase().includes(searchText)) && (foodCountRadioButton === 'All' || foodCountRadioButton === food.type))">
+          <a class="product" style="cursor: pointer; display: flex; flex-direction: column; height: 100%;">
+            <div class="img-prod" [routerLink]="'/viewdetail/' + food.id">
+              <img class="img-fluid fixed-size-img" [src]="food.images[1].url" alt="Colorlib Template">
+              <div class="overlay"></div>
+            </div>
+    
+            <div class="text py-3 pb-4 px-3 text-center flex-grow-1" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 18px;"><a href="#" [routerLink]="'/viewdetail/' + food.id">{{food.name}}</a></h3>
+                <div class="pricing" [routerLink]="'/viewdetail/' + food.id">
+                  <p class="price"><span class="price-sale">{{food.price.toLocaleString('en-IN')| currency:'INR'}}/kg</span></p>
+                </div>
+              </div>
+              <div class="bottom-area d-flex px-3">
+                <div class="m-auto d-flex">
+                  <a  class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                    <span><i class="ion-ios-menu"></i></span>
+                  </a>
+                  <a  class="buy-now d-flex justify-content-center align-items-center mx-1">
+                    <span><i class="ion-ios-cart" (click)="addToCart(food)"> </i></span>
+                  </a>
+                  <a  class="heart d-flex justify-content-center align-items-center">
+                    <span><i class="ion-ios-heart" (click)="addToWishlist(food)"></i></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+    </div>
+    
+    
+    <!-- <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+ 
+    
+    <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <li (click)="previousPage()"><a href="javascript:void(0)">&lt;</a></li>
+            <li *ngFor="let page of pages" [class.active]="page === p">
+              <a href="javascript:void(0)" (click)="goToPage(page)">{{ page }}</a>
+            </li>
+            <li (click)="nextPage()"><a href="javascript:void(0)">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+
+
+      <!-- <div class="pagination-container">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div> -->
+
+      
+  </div> 
+  <div class="container-fluid">
+    <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+      <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+          <div class="col-md-6">
+            <h2 style="font-size: 22px;" class="mb-0">Subscribe to our Newsletter</h2>
+            <span>Get e-mail updates about our latest shops and special offers</span>
+          </div>
+          <div class="col-md-6 d-flex align-items-center">
+            <form (ngSubmit)="subscribe()" #subscribeForm="ngForm" class="subscribe-form">
+              <div class="form-group d-flex">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter email address"
+                  [(ngModel)]="email"
+                  name="email"
+                  #emailModel="ngModel"
+                  required
+                  email
+                >
+            
+            
+                <input type="submit" value="Subscribe" class="submit px-3" [disabled]="!subscribeForm.valid">
+              </div>
+              <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="text-danger">
+                <div *ngIf="emailModel.errors?.['required']">Email is required.</div>
+                <div *ngIf="emailModel.errors?.['email']">Invalid email address.</div>
+              </div>
+            </form>
+          
+           
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

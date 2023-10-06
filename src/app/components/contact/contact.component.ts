@@ -11,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ContactFormComponent {
   contactForm !: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http:HttpClient,private router: Router,private toastr: ToastrService) { }
+  constructor(private formBuilder: FormBuilder, private http:HttpClient,private router: Router,private toastr: ToastrService) 
+  {  this.toastr.toastrConfig.positionClass = 'toast-bottom-right'; }
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({

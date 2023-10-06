@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service.service'; // Import your API service
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,7 @@ export class AdminComponent implements OnInit {
   public role!: string;
   public users: any = [];
 
-  constructor(private api: ApiService,private authService:AuthService,private cartService:CartService) {} // Inject your API service here
+  constructor(private api: ApiService,private authService:AuthService,private cartService:CartService,private router:Router) {} // Inject your API service here
 
   ngOnInit() {
    
@@ -23,6 +24,9 @@ export class AdminComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   } 
   logout() {
+    this.router.navigate(['/login']);
+    localStorage.removeItem('loggedInUser');
+  
     this.authService.signOut();
    
   }

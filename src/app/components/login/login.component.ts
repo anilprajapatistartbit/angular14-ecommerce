@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
     private toast: NgToastService,
     private toastr: ToastrService,
     private cartService :CartService
-  ) {}
+  ) {
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({

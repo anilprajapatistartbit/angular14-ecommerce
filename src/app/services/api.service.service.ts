@@ -10,6 +10,7 @@ export class ApiService {
   private baseUrlOrder: string = 'https://localhost:7005/api/Order/';
   private baseUrlBilling: string = 'https://localhost:7005/api/Billing/';
   private baseUrlAddress:string='https://localhost:7005/api/addresses/';
+  private baseUrlNewsletter:string='https://localhost:7005/api/Newsletter';
   private firstnameSubject = new BehaviorSubject<string>('');
   
   constructor(private http: HttpClient) {}
@@ -21,13 +22,13 @@ export class ApiService {
     return this.http.post<any>(this.baseUrlOrder, orders);
   }
 
-  // Get a single order by its ID
+
   getOrderDetails(orderId: number): Observable<any> {
     const url = `${this.baseUrlOrder}getorderdetails/${orderId}`;
     return this.http.get(url);
   }
 
-  // Get all orders
+  
   getOrder(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrlOrder}GetOrder`);
   }
@@ -52,5 +53,8 @@ export class ApiService {
   
   getFirstname(): Observable<string> {
     return this.firstnameSubject.asObservable();
+  }
+  createNewsletter(email: any): Observable<any> {
+    return this.http.post<any>(this.baseUrlNewsletter, email);
   }
 }

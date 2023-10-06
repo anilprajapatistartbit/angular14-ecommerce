@@ -22,7 +22,9 @@ export class SignupComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
+  }
 
   ngOnInit() {
     this.signUpForm = this.formBuilder.group(
@@ -37,6 +39,9 @@ export class SignupComponent implements OnInit {
         validators: matchpassword
       }
     );
+
+
+
   }
 
   hideShowPass() {

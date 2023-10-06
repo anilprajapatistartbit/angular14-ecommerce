@@ -1,0 +1,78 @@
+<!-- <div class="container">
+    <h2>User Orders with Billing Details</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Order Date</th>
+          <th>Currency</th>
+          <th>Total Price</th>
+          <th>Billing Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of userOrders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.orderDate }}</td>
+          <td>{{ order.currency }}</td>
+          <td>{{ order.totalPrice }}</td>
+          <td>{{ order.billingDetails?.firstName }} {{ order.billingDetails?.lastName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <div class="hero-wrap hero-bread" style="background-image: url('assets/bg_1.jpg');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span></p>
+          <h1 class="mb-0 bread">Your Orders</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12 ftco-animate">
+            <div class="cart-list">
+                <table class="table">
+                    <thead class="thead-primary" >
+                      <tr class="text-center">
+                      
+                        <th>SNo</th>
+                        <th>Order Id</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+      <tbody>
+        <tr  *ngFor="let order of userOrders | paginate: { itemsPerPage: 6, currentPage: p};let i=index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ order.id }}</td>
+        
+        
+     
+        
+          <td>{{ order.totalPrice }}</td>
+          <td>
+    <button class="btn-view-invoice" (click)="navigateToOrderDetails(order.id)">View Invoice</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   <div class="pagination-container">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+
+

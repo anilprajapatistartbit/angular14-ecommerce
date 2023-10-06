@@ -1,0 +1,35 @@
+
+  
+ 
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  
+  
+ 
+.btn-view-invoice {
+    background-color: #28a745;
+    color: white; 
+    border: none;
+    padding: 5px 10px; 
+    cursor: pointer;
+    border-radius: 20px; 
+    height:40px !important;
+  }
+  
+
+  .btn-view-invoice:hover {
+    background-color: #1e7e34; 
+  }
+  table.table thead.thead-primary th {
+    background: #82ae46;
+  }
+  .img-fluid {
+    max-width: 60%;
+    height: auto;
+    display: block; /* To remove extra spacing below inline elements */
+  }

@@ -13,7 +13,7 @@ export class CartComponent {
  
   constructor(private cartService: CartService,private toastr: ToastrService) {
     this.cartItems = this.cartService.getCartItems();
-
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
   }
 
 

@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container-fluid" style="max-width: 1420px;">
   <app-header *ngIf="shouldDisplayHeader()" ></app-header>
   <router-outlet></router-outlet>
+<app-footer *ngIf="shouldDisplayHeader()" ></app-footer>
 
-  
 </div>
+<ng-confirm></ng-confirm>

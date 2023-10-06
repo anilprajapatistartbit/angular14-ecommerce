@@ -5,7 +5,7 @@
         Address Details
       </div>
       <div class="card-body">
-        <input type="radio" [name]="'addressRadioGroup'" [value]="i" [(ngModel)]="selectedAddressIndex">
+        <input type="radio" [name]="'addressRadioGroup'" [value]="i" [(ngModel)]="selectedAddressIndex" (change)="onAddressSelect(i)">
         <p><strong>Country:</strong> {{ address.country }}</p>
         <p><strong>State:</strong> {{ address.state }}</p>
         <p><strong>City:</strong> {{ address.city }}</p>
@@ -14,6 +14,7 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-success" style="width: 120px;" (click)="OnPay()">Pay</button>
-  <button class="btn btn-primary" style="width: 160px; margin-left: 20px;" routerLink="/addaddress">Add More Address</button>
 </div>
+
+
+<button class="btn btn-primary" style="width: 160px; margin-left: 20px;" routerLink="/addaddress">Add More Address</button>

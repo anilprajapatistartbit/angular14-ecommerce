@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Food } from '../../models/food';
 import { FoodService } from '../../services/food.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-addfood',
   templateUrl: './addfood.component.html',
@@ -13,15 +14,17 @@ export class AddfoodComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private foodService: FoodService // Inject your FoodService here
+    private foodService: FoodService,
+    private toastr:ToastrService
   ) {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
-      desc: ['']
+      desc: ['',Validators.required]
     });
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
   }
 
   onSelect(event: any) {
@@ -36,9 +39,12 @@ export class AddfoodComponent {
           }
         };
       }
+  
+      
+      event.target.value = ''; 
     }
   }
-
+  
   addFood() {
     if (this.addForm.valid) {
       const foodData = this.addForm.value;
@@ -56,7 +62,7 @@ export class AddfoodComponent {
       this.foodService.createFood(foodWithImages).subscribe(
         (response) => {
           console.log('Food added successfully:', response);
-       
+          this.toastr.success('Food added successfully');
           this.addForm.reset();
           this.urls = [];
         },

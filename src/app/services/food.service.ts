@@ -29,9 +29,19 @@ export class FoodService {
   deleteFood(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrlFood}/DeleteFood/${id}`);
   }
-
- 
- 
+updateFood(id: number, food: Food): Observable<Food> {
+return this.http.put<Food>(`${this.apiUrlFood}/UpdateFood/${id}`,food)
+}
+updateFoodImages(foodId: number, imageUrls: string[]): Observable<any> {
+  const updateImagesUrl = `${this.apiUrlFood}/UpdateFoodImages/${foodId}/images`;
+  return this.http.put(updateImagesUrl, { images: imageUrls });
+}
+getFruits(): Observable<Food[]> {
+  return this.http.get<Food[]>(`${this.apiUrlFood}/GetFruits`);
+}
+getVeggies(): Observable<Food[]> {
+  return this.http.get<Food[]>(`${this.apiUrlFood}/GetVeggies`);
+}
   
 
 }

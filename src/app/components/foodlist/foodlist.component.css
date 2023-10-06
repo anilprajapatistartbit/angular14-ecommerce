@@ -1,5 +1,5 @@
 .container {
-    margin-top: 50px;
+    margin-top: 100px;
   }
   
   .table {
@@ -21,8 +21,8 @@
   .btn-group {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Adjust the space between buttons */
-    margin-top: 5px; /* Add margin to the top */
+    gap: 10px; 
+    margin-top: 5px; 
   }
   
   .btn {
@@ -36,7 +36,4 @@
     margin-bottom: 20px;
   }
   
-  /* .add-food-button button {
-    padding: 8px 16px;
-  }
-   */
+  

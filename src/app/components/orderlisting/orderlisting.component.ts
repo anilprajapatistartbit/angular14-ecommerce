@@ -30,7 +30,16 @@ export class OrderlistingComponent {
     );
   }
   navigateToOrderDetails(orderId: number) {
-    // Use the router to navigate to the order details page with the order ID as a parameter
+  
     this.router.navigate(['/fooddetails', orderId]);
+  }
+  calculateTotal(order: any): number {
+    if (!order || !order.orderItems) {
+      return 0; // Return 0 if data is not available
+    }
+
+    return order.orderItems.reduce((total: number, orderItem: { price: number; quantity: number; }) => {
+      return total + orderItem.price * orderItem.quantity;
+    }, 0);
   }
 }

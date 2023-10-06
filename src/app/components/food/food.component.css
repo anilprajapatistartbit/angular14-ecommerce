@@ -1,65 +1,34 @@
-.food-container{
-    display: inline-flex;
-}
-
-.food-card{
-    width: 221px;
-    height: 300px;
-    margin: 20px 10px;
-    background-color: #F8F9F9;
-}
-.food-name{
-    text-align: center;
-    margin-top:10px;
-}
-
-.food-price{
-    margin-top:15px;
-}
-.details{
-    display: flex;
-    margin: 10px 0px;
-}
-.food-type{
-    width:50%;
-    font-weight: bold;
-}
-.food-buttons{
-    display: flex;
-    margin-top:25px;
-}
-.btn{
-    width: 140px;
-    height: 30px;
-    border: none;
-    margin: 5px 3px;
-}
-.buy-now-button{
-    background-color: #EC7063;
-    margin-left:10px;
-   
-}
-.add-to-cart-button{
-    background-color: #ABEBC6;
-    width: 190px;
-    margin-left: 10px;
-}
-.btn1{
-    background:rgb(94,0,0);
-    border-radius:50%;
-    font-size:16px;
-    color:#fff;
-    margin:0 8px;
-  
-     /* margin-top:15px; */
-}
-.pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+/* Set fixed width and height for the images */
+.fixed-size-img {
+    width: 100%; /* Adjust this width as needed */
+    height: auto; /* Automatically scale the height to maintain aspect ratio */
+    max-height: 200px; /* Maximum height for the images */
+    object-fit: cover; /* Preserve aspect ratio and cover the entire container */
   }
   
-
-
+  /* Equal height row for the containers */
+  .equal-height-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Equal height columns within the row */
+  .equal-height-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Ensure the columns grow to fill available space vertically */
+  .equal-height-col .product {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* Add any additional styling you need for the product container */
+  .product {
+    /* Your existing styles for the product container */
+  }
+  
+  /* Add any other styles as needed */
   

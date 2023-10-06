@@ -13,9 +13,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AddaddressComponent {
   addressForm!: FormGroup;
-
+  defaultCountry: string = 'India';
+  defaultState: string = 'Rajasthan';
   constructor(private fb: FormBuilder, private auth:AuthService,
-    private router:Router,  private http : HttpClient,   private toastr:ToastrService) {}
+    private router:Router,  private http : HttpClient,   private toastr:ToastrService) {
+      this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
+    }
 
   ngOnInit(): void {
     this.createAddressForm();
@@ -23,11 +26,12 @@ export class AddaddressComponent {
 
   createAddressForm() {
     this.addressForm = this.fb.group({
-      country: ['', Validators.required],
-      state: ['', Validators.required],
+      country: [this.defaultCountry, Validators.required],
+      state: [this.defaultState, Validators.required],
       city: ['', Validators.required],
-      streetAddress: ['', Validators.required],
-      zipcode: ['']
+      zipcode: ['',[Validators.required,Validators.minLength(6)]],
+      streetAddress: ['', Validators.required]
+     
     });
   }
 
@@ -40,7 +44,7 @@ export class AddaddressComponent {
       // Display validation error messages if the form is invalid
       // this.validateAllFormFields(this.addressForm);
     }
-    this.router.navigate(['/useraddress', userId]);
+ 
         this.http.post("https://localhost:7005/api/addresses", {
       userId:userId,
       country: this.addressForm.value.country,
@@ -57,6 +61,7 @@ export class AddaddressComponent {
           this.toastr.success("Address Added Successfully");
       
           this.addressForm.reset();
+          this.router.navigate(['/checkout']);
         } else {
           console.log("Unexpected response:", res);
           alert("Something went wrong");

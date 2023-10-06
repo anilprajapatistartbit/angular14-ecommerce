@@ -1,23 +1,71 @@
-<h2>Order Details</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Sno</th>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let orderItem of orderDetails.orderItems; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ orderItem.foodId }}</td>
-      <td>{{orderItem.food.name}}</td>
-      <td>{{ orderItem.price }}</td>
-      <td>{{ orderItem.quantity }}</td>
-      <td>{{ orderItem.price*orderItem.quantity }}</td>
-    </tr>
-  </tbody>
-</table>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+ 
+
+    <app-admin></app-admin>
+  
+    <div class="container col-md-8">
+      <img src="./assets/logo.png" class="logo">
+        <h2><u>Invoice</u></h2>
+        <div class="row">
+          <div class="col-md-6">
+            <p><b>Name:</b>{{ orderDetails.order.billingDetails.firstName  }}</p>
+             <p><b>Gender:</b>{{ orderDetails.order.billingDetails.gender }}
+            <p>
+              <b>Phone Number:</b>{{ orderDetails.order.billingDetails.phone }}
+            </p>
+            <p><b>Email:</b>{{orderDetails.order.billingDetails.email }}</p>
+            <p><b>Transaction ID:</b>{{ orderDetails.order.transactionId }}</p>
+            <p>
+              <b> Ordered On:</b
+              >{{ orderDetails.order.orderDate | date : "dd-MM-YYYY EEEE" }}
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p><b>Country:</b>{{ orderDetails.order.billingDetails.country }}</p>
+            <p><b>State:</b>{{ orderDetails.order.billingDetails.state }}</p>
+            <p><b>City:</b>{{ orderDetails.order.billingDetails.city }}</p>
+            <p>
+              <b>StreetAddress:</b>{{ orderDetails.order.billingDetails.streetAddress }}
+            </p>
+            <p><b>Zipcode:</b>{{ orderDetails.order.billingDetails.zipCode }}</p>
+      
+          
+          </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let orderItem of orderDetails.orderItems; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ orderItem.food.name }}</td>
+                    <td>{{ orderItem.price }}</td>
+                    <td>{{ orderItem.quantity }}</td>
+                    <td>{{ orderItem.price * orderItem.quantity }}</td>
+                </tr>
+            </tbody>
+      
+        <tfoot>
+          <tr *ngIf="orderDetails.orderItems.length>0">
+              <td colspan="4" class="text-end">Grand Total:</td>
+              <td>&#8377;{{calculateTotal(orderDetails) | number:'1.2-2'}}</td>
+          </tr>
+      </tfoot>
+    </table>
+      
+    </div>
+   
+    <!-- Optional: Print Button -->
+    <!-- <div class="print-button">
+        <button onclick="window.print()">Print Invoice</button>
+    </div> -->
+
+    

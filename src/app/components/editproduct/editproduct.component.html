@@ -1,0 +1,72 @@
+<app-admin></app-admin>
+<app-adminheader></app-adminheader>
+<div class="container">
+  <h2><u>Edit Product</u></h2>
+  <form (ngSubmit)="updateFood()" #foodForm="ngForm">
+    <div class="form-group">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        [(ngModel)]="food.name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="type" class="form-label">Type</label>
+      <input
+        type="text"
+        class="form-control"
+        id="type"
+        name="type"
+        [(ngModel)]="food.type"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        [(ngModel)]="food.price"
+        required
+      />
+    </div>
+
+    <!-- Images -->
+    <div class="form-group">
+      <label>Images:</label>
+      <div *ngIf="food.images" style="display: inline-flex;">
+        <div *ngFor="let image of food.images; let i = index">
+          <span style="position: relative;">
+            <img [src]="image.url" alt="Food Image" class="img-thumbnail" />
+            <button class="btn btn-danger btn-sm" style="position: absolute; right: 5px;" (click)="removeImage(i)">✕</button>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="newImage">Add New Image:</label>
+        <input type="file" id="newImage" (change)="onImageChange($event)" name="newImage" class="form-control" accept="image/*">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        [(ngModel)]="food.description"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="button" class="btn btn-primary" routerLink="/foodlist" style="margin-left:10px;">Cancel</button>
+  </form>
+</div>
