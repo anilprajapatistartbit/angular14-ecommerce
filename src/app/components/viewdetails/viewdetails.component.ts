@@ -50,16 +50,6 @@ relatedProducts: Food[] = [];
   }
   
   
-  loadFruits() {
-    this.foodService.getFruits().subscribe((data) => {
-      this.fruits = data;
-    });
-  }
-  loadVeggies() {
-    this.foodService.getVeggies().subscribe((data) => {
-      this.veggies = data;
-    });
-  }
   onThumbnailClick(imageId: string) {
     // Find the image object with the matching imageId
     const selectedImage = this.food.images.find((image: any) => image.id === imageId);

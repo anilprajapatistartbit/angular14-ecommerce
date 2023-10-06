@@ -39,7 +39,7 @@ import { FooddetailsbyuserComponent } from './components/fooddetailsbyuser/foodd
 import { EditproductComponent } from './components/editproduct/editproduct.component';
 import { AdminheaderComponent } from './components/adminheader/adminheader.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FoodTypeFilterPipe } from './food-filter.pipe';
+import { FoodTypeFilterPipe } from './pipe/food-filter.pipe';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 

@@ -1,9 +1,9 @@
 /* Set fixed width and height for the images */
 .fixed-size-img {
-    width: 100%; /* Adjust this width as needed */
-    height: auto; /* Automatically scale the height to maintain aspect ratio */
-    max-height: 200px; /* Maximum height for the images */
-    object-fit: cover; /* Preserve aspect ratio and cover the entire container */
+    width: 100%; 
+    height: 200px;
+
+    object-fit: cover; 
   }
   
   /* Equal height row for the containers */
