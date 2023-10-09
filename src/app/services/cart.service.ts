@@ -11,11 +11,12 @@ export class CartService {
   private cartItems: Food[] = [];
   private Wishlist: Food[] = [];
   private cartItemCount = new BehaviorSubject<number>(0);
-  // private cartLockKey = 'cartLock';
-  private _stripeTransactionId: string = ''; 
+
+
   private userId: string=''; 
   constructor(private toastr: ToastrService,private authService: AuthService) {
-    //this.userId = this.authService.getUserId(); // Get the user ID from your authentication service
+    const loggedInUser = localStorage.getItem('loggedInUser');
+  this.userId = loggedInUser ? JSON.parse(loggedInUser).userId : '';
     this.getCartItemsFromLocalStorage();
     this.getWishlistItemsFromLocalStorage();
   }
@@ -31,18 +32,7 @@ export class CartService {
   getCartItemCount() {
     return this.cartItemCount.asObservable();
   }
-  // validateCartBeforePayment(newCartItems: Food[]): boolean {
-  //   const storedCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]') as Food[];
 
-  //   // Compare the current cart items with the stored cart items
-  //   const cartItemsChanged = JSON.stringify(newCartItems) !== JSON.stringify(storedCartItems);
-
-  //   if (cartItemsChanged) {
-  //     this.toastr.error('Cart contents have changed. Please review your cart before payment.');
-  //   }
-
-  //   return !cartItemsChanged;
-  // }
 
   getCartItemsFromLocalStorage() {
     const storedCartItems = localStorage.getItem(`cartItems_${this.userId}`); // Include the user ID in the key
@@ -59,11 +49,7 @@ export class CartService {
     }
   }
   addToCart(product: Food) {
-    // Check if the cart is locked
-    // if (this.isCartLocked()) {
-    //   this.toastr.warning('Your cart is currently locked. Please try again later.');
-    //   return;
-    // }
+   
 
     const existingItem = this.cartItems.find((item) => item.id === product.id);
 
@@ -78,7 +64,7 @@ export class CartService {
   }
 
   clearCart() {
-    // Unlock the cart when clearing
+   
    
     this.cartItems = [];
     this.cartItemCount.next(0);
@@ -108,15 +94,18 @@ export class CartService {
     }
   }
 
+  setCartItems(cartItems: Food[]) {
+    this.cartItems = cartItems;
+    this.cartItemCount.next(cartItems.length);
+  }
 
 
-  // Update cart data in local storage
  updateCartInLocalStorage() {
     localStorage.setItem(`cartItems_${this.userId}`, JSON.stringify(this.cartItems));
   
   }
   addToWishlist(product: Food) {
-    // Assuming cartItems and userId are correctly initialized
+
     const existingItem = this.Wishlist.find((item) => item.id === product.id);
   
     if (!existingItem) {

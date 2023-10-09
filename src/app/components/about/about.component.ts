@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import 'src/js/owl.carousel.min.js';
+import 'src/assets/js/owl.carousel.min.js';
 
 @Component({
   selector: 'app-about',

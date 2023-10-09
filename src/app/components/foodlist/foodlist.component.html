@@ -1,43 +1,50 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<app-admin></app-admin>
-<app-adminheader class="col-md-6"></app-adminheader>
-<div class="container  col-md-8">
-    <h2 style="text-align: center;"><u>Food List</u></h2>
-    <div class="add-food-button">
-      <button class="btn btn-success" routerLink="/addfood">Add Food</button>
-    </div>
-    <table class="table table-bordered" style="margin-left:50px;">
-      <thead>
-        <tr>
-       
-          <th>Name</th>
-          <th>Type</th>
-          <th>Price</th>         
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let food of foods">
-       
-          <td>{{ food.name }}</td>
-          <td>{{ food.type }}</td>
-          <td>{{ food.price }}</td>
-       
-      
-          <td> 
-            <div class="btn-group" role="group">
-              <button class="btn btn-warning" [routerLink]="'/editproduct/' + food.id">
+<app-adminheader></app-adminheader>
 
-                <i class="fas fa-edit"></i>
-              </button>
-              <button class="btn btn-danger"(click)="deleteFood(food.id)" >
-                <i class="fas fa-trash"  ></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<app-admin></app-admin>
+<div class="container  col-md-8">
+  <h2 style="text-align: center;"><u>Food List</u></h2>
+  <div class="add-food-button">
+    <button class="btn btn-success" routerLink="/addfood">Add Food</button>
   </div>
-  
+  <table class="table table-bordered" style="margin-left:50px;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let food of foods | paginate: { itemsPerPage: 5, currentPage: p};">
+        <td>{{ food.name }}</td>
+        <td>{{ food.type }}</td>
+        <td>{{ food.price }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button
+              class="btn btn-warning custom-tooltip"
+              [routerLink]="'/editproduct/' + food.id"
+              title="Edit"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              class="btn btn-danger custom-tooltip"
+              (click)="deleteFood(food.id)"
+              title="Delete" 
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pagination-container" style="text-align: center;">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

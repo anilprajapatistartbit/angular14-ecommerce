@@ -28,7 +28,7 @@
       <div class="mb-3">
         <label for="desc" class="form-label">Description</label>
         <textarea formControlName="desc" class="form-control" id="Description"></textarea>
-        <small *ngIf="addForm.controls['desc'].dirty && addForm.hasError('required','desc')" class="text-danger">*Name is required*</small>
+        <small *ngIf="addForm.controls['desc'].dirty && addForm.hasError('required','desc')" class="text-danger">*Description is required*</small>
       </div>
       <div class="mb-3">
         <img *ngFor="let url of urls" [src]="url"><br>

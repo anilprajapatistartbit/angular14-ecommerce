@@ -1,15 +1,17 @@
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="sidebar">
-    <div class="dropdown" [ngClass]="{'open': isDropdownOpen}" (click)="toggleDropdown()">
-      <a  class="dropbtn">Products &#9660;</a>
-      <div class="dropdown-content" *ngIf="isDropdownOpen">
-        <a href="" routerLink="/foodlist">Product List</a>
-        <a href="#" routerLink="/addfood">Add Product</a>
-    
-      </div>
+  <div class="dropdown" [ngClass]="{'open': isDropdownOpen}" (click)="toggleDropdown()">
+    <a class="dropbtn" style="cursor: pointer;">
+      <i class='fab fa-product-hunt'  style="margin-right: 4px;"></i>Products
+      <i class="fas fa-chevron-down"></i></a>
+    <div class="dropdown-content" *ngIf="isDropdownOpen">
+      <a  routerLink="/foodlist"> <i class="fa fa-list"></i> Product List</a>
+      <a  routerLink="/addfood"><i class="fas fa-plus-circle"></i>Add Product</a>
+
     </div>
-    <a href="#" routerLink="/orderlist">Orders</a>
-    <a href="#" routerLink="/userlist">User Listing</a>
-    <a href="#"  routerLink="/login" (click)="logout()">Logout</a>
   </div>
+  <a  routerLink="/orderlist"><i class="fa fa-list" style="margin-right: 4px;"></i> Orders</a>
+  <a  routerLink="/userlist"><i class="fas fa-user" style="margin-right: 4px;"></i>User Listing</a>
+  <a  routerLink="/login" (click)="logout()"><i class="fas fa-sign-out-alt" style="margin-right: 4px;cursor: pointer;"></i>Logout</a>
+</div>

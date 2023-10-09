@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AddressService } from 'src/app/services/address.service';
+
 import { ApiService } from 'src/app/services/api.service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -19,7 +19,7 @@ export class UseraddressComponent {
   constructor(
     private http: HttpClient,
     private api: ApiService,
-    private addressService: AddressService,
+
     private auth: AuthService,
     private cartService: CartService,
   ) {}
@@ -33,7 +33,7 @@ export class UseraddressComponent {
     this.selectedAddressIndex = index;
     this.addressSelected.emit(this.addressData[index]);
 
-    this.addressService.setSelectedAddress(this.addressData[index]);
+    this.api.setSelectedAddress(this.addressData[index]);
   }
   ngOnInit() {
     const userId = this.auth.getUserId();

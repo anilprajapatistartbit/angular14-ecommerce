@@ -1,45 +1,36 @@
-
-
-
-
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <app-admin></app-admin>
 <app-adminheader></app-adminheader>
 <div class="container  col-md-8" style="margin-top:100px;">
-    <h2 style="text-align: center;margin-bottom: 30px;"><u>Order Details</u></h2>
-    
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-       
-          <th>Sno</th>
+  <h2 style="text-align: center;margin-bottom: 30px; margin-top:-75px; margin-left: 115px;"><u>Order Details</u></h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sno</th>
         <th>Order ID</th>
         <th>User Id</th>
-      
-  
         <th>Total</th>
-     <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p};let i=index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ order.id }}</td>
-        
-          <td>{{ order.userId }}</td>
-     
-        
-          <td>{{ order.totalPrice }}</td>
-          <td>
-    <button class="btn-view-invoice" (click)="navigateToOrderDetails(order.id)">View Invoice</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-   <div class="pagination-container">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p};let i=index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.id }}</td>
+
+        <td>{{ order.userId }}</td>
+
+
+        <td>{{ order.totalPrice }}</td>
+        <td>
+          <button class="btn-view-invoice" (click)="navigateToOrderDetails(order.id)">View Invoice</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pagination-container">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

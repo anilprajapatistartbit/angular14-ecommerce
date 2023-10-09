@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { AddressService } from 'src/app/services/address.service';
+
 import { Food } from 'src/app/models/food';
 
 @Component({
@@ -35,7 +35,7 @@ export class CheckoutComponent {
     private cartService: CartService,
     private apiService: ApiService,
     private fb: FormBuilder,
-    private addressService: AddressService,
+
     private toastr: ToastrService,
     private http: HttpClient,
     private auth: AuthService,

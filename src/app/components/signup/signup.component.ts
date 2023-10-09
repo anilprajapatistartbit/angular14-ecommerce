@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchpassword } from 'src/app/shared/matchpassword.validator';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmPasswordValidator } from 'src/app/shared/confirm-password.validator';
 
 
 @Component({
@@ -33,16 +34,14 @@ export class SignupComponent implements OnInit {
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required] // Apply the validator here
       },
       {
-        validators: matchpassword
+        validator: ConfirmPasswordValidator("password", "confirmPassword")
       }
     );
-
-
-
   }
+  
 
   hideShowPass() {
     this.isText = !this.isText;
@@ -76,4 +75,3 @@ onSubmit() {
   }
 }
 }
-

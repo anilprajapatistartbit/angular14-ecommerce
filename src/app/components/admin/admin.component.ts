@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   } 
   logout() {
-    this.router.navigate(['/login']);
+  
     localStorage.removeItem('loggedInUser');
   
     this.authService.signOut();

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Food } from '../../models/food';
-import { FoodService } from '../../services/food.service';
+
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service.service';
 @Component({
   selector: 'app-addfood',
   templateUrl: './addfood.component.html',
@@ -14,7 +15,7 @@ export class AddfoodComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private foodService: FoodService,
+    private apiService: ApiService,
     private toastr:ToastrService
   ) {
     this.addForm = this.formBuilder.group({
@@ -59,7 +60,7 @@ export class AddfoodComponent {
         isInCart: false
       };
   
-      this.foodService.createFood(foodWithImages).subscribe(
+      this.apiService.createFood(foodWithImages).subscribe(
         (response) => {
           console.log('Food added successfully:', response);
           this.toastr.success('Food added successfully');

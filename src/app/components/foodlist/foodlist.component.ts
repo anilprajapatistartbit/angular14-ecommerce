@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Food } from '../../models/food';
-import { FoodService } from '../../services/food.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { NgConfirmService } from 'ng-confirm-box';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service.service';
 
 @Component({
   selector: 'app-foodlist',
@@ -12,10 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FoodlistComponent {
   foods: Food[] = [];
-
+  p: number = 1;
   constructor(
     private toastr: ToastrService,
-    private foodService: FoodService,
+    private apiService: ApiService,
     private confirmService: NgConfirmService,
    
   ) {
@@ -23,7 +24,7 @@ export class FoodlistComponent {
   }
 
   loadFoods() {
-    this.foodService.getFoods().subscribe((foods: Food[]) => {
+    this.apiService.getFoods().subscribe((foods: Food[]) => {
       this.foods = foods;
     });
   }
@@ -37,7 +38,7 @@ export class FoodlistComponent {
       'Are you sure you want to delete?',
       () => {
         // Confirmation callback - Delete the food item
-        this.foodService.deleteFood(id).subscribe(
+        this.apiService.deleteFood(id).subscribe(
           () => {
             this.toastr.success('Food deleted successfully');
             this.loadFoods(); // Reload the list of foods after deletion

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FoodService } from '../../services/food.service';
+
 import { Food } from '../../models/food';
 import { CartService } from '../../services/cart.service';
+import { ApiService } from 'src/app/services/api.service.service';
 @Component({
   selector: 'app-viewdetails',
   templateUrl: './viewdetails.component.html',
@@ -16,7 +17,7 @@ fruits: any[] = [];
 veggies: any[] = [];
 relatedProducts: Food[] = [];
 
-  constructor(private route: ActivatedRoute, private foodService: FoodService,private cartService: CartService) {}
+  constructor(private route: ActivatedRoute,private cartService: CartService,private api:ApiService) {}
 
   ngOnInit(): void {
     const foodId = this.route.snapshot.paramMap.get('id');
@@ -25,18 +26,18 @@ relatedProducts: Food[] = [];
       const Id = Number(foodId);
   
       if (!isNaN(Id)) {
-        this.foodService.getFood(Id).subscribe(
+        this.api.getFood(Id).subscribe(
           food => {
             this.food = food;
             this.selectedImage = food.images[1]?.url;
             
             // Fetch related products based on the food type
             if (food.type === 'Fruits') {
-              this.foodService.getFruits().subscribe(data => {
+              this.api.getFruits().subscribe(data => {
                 this.relatedProducts = data;
               });
             } else if (food.type === 'Veggies') {
-              this.foodService.getVeggies().subscribe(data => {
+              this.api.getVeggies().subscribe(data => {
                 this.relatedProducts = data;
               });
             }

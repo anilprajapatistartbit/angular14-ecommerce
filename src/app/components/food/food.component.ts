@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FoodService} from '../../services/food.service';
+
 import { Food } from '../../models/food';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,10 +19,10 @@ totalItems: number = 14;
 itemsPerPage: number = 8;
 email: string = '';
 
-  constructor(private foodService: FoodService, private cartService: CartService,
+  constructor(private cartService: CartService,
     private apiService: ApiService,private authService:AuthService) {}
   loadFoods() {
-    this.foodService.getFoods().subscribe((foods: Food[]) => {
+    this.apiService.getFoods().subscribe((foods: Food[]) => {
       this.foods = foods;
       console.log(foods);
       

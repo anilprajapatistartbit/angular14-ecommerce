@@ -42,6 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FoodTypeFilterPipe } from './pipe/food-filter.pipe';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { AdminprofileComponent } from './components/adminprofile/adminprofile.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     AdminheaderComponent,
     FooterComponent,
     FoodTypeFilterPipe,
-    WishlistComponent
+    WishlistComponent,
+    AdminprofileComponent
   ],
   imports: [
     BrowserModule,

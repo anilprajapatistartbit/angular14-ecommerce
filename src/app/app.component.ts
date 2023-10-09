@@ -22,7 +22,8 @@ export class AppComponent {
     
 }
 shouldDisplayHeader(): boolean {
-  const excludedRoutes = [ 'admin','userlist','foodlist','addproduct','addfood','orderlist','fooddetails','userfood','editproduct'];
+  const excludedRoutes = [ 'admin','userlist','foodlist','addproduct','addfood','orderlist','fooddetails',
+  'profile','userfood','editproduct'];
  
   return !excludedRoutes.some(route => this.router.url.includes(route));
   

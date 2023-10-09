@@ -3,45 +3,35 @@ body {
 }
 
 .container {
-    max-width: 850px;
-    margin-top: 110px;
-    margin-left: 325px;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 30px;
 }
 
 .logo {
-    float: right;
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
-.transaction-id {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-
-  .order-id {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
 h2 {
     text-align: center;
-    margin-bottom: 30px;
     text-decoration: underline;
 }
 
-table {
-    width: 100%;
+.tables {
+    width: 102% !important;
     border-collapse: collapse;
-    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #ccc;
+th,
+td {
     padding: 10px;
     text-align: left;
 }
@@ -50,8 +40,12 @@ th {
     background-color: #f2f2f2;
 }
 
-.total {
-    text-align: right;
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tfoot td {
+    text-align: end;
     font-weight: bold;
 }
 
@@ -61,13 +55,13 @@ th {
 }
 
 .print-button button {
-    background-color: #007bff;
-    color: white;
-    border: none;
     padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     cursor: pointer;
+    border-radius: 30px;
 }
-
 
 .print-button button:hover {
     background-color: #0056b3;

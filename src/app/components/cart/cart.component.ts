@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {FoodService} from '../../services/food.service';
+
 import { Food } from '../../models/food';
 import { CartService } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';

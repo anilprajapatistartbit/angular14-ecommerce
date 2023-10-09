@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Food } from 'src/app/models/food';
-import { FoodService } from 'src/app/services/food.service';
+import { ApiService } from 'src/app/services/api.service.service';
+
 
 @Component({
   selector: 'app-editproduct',
@@ -16,14 +17,14 @@ export class EditproductComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private foodService: FoodService,
+    private apiService: ApiService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.foodId = +params['id'];
-      this.foodService.getFood(this.foodId).subscribe(
+      this.apiService.getFood(this.foodId).subscribe(
         (result) => {
           this.food = result;
         },
@@ -52,11 +53,11 @@ export class EditproductComponent {
   updateFood() {
     // Send the updated images to the API
     const imageUrls: string[] = this.food.images.map((image) => image.url);
-    this.foodService.updateFoodImages(this.food.id, imageUrls).subscribe(
+    this.apiService.updateFoodImages(this.food.id, imageUrls).subscribe(
       (response) => {
         console.log('Images updated successfully:', response);
         // Now, update the rest of the food item
-        this.foodService.updateFood(this.foodId, this.food).subscribe(
+        this.apiService.updateFood(this.foodId, this.food).subscribe(
           (result) => {
             console.log('Food item updated successfully:', result);
             this.router.navigate(['/foodlist']);

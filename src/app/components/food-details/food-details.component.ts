@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order, OrderItem } from 'src/app/models/order';
 import { ApiService } from 'src/app/services/api.service.service';
-import { FoodService } from 'src/app/services/food.service';
+
 
 @Component({
   selector: 'app-food-details',
@@ -19,12 +19,11 @@ export class FoodDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Retrieve the selected order details from matrix parameters
+  
     this.route.params.subscribe((params) => {
       const orderId = +params['orderId'];
       console.log(orderId);
 
-      // Call your getOrderDetails API with the orderId to fetch order details
       this.apiService.getOrderDetails(orderId).subscribe(
         (orderDetails) => {
           this.orderDetails = orderDetails;

@@ -27,14 +27,19 @@ export class AuthService {
       tap((res) => {
         if (res && res.accessToken) {
           this.storeToken(res.accessToken);
-        
-          this.userDataSubject.next(res);
+  
+          this.userDataSubject.next(res); // Update the subject immediately
+  
+          // Also, set the username in localStorage
+          localStorage.setItem('userName', res.firstName);
+  
           this.userIdSubject.next(res.userId);
           localStorage.setItem('loggedInUser', JSON.stringify(res));
         }
       })
     );
   }
+  
   getUserDataObservable(): Observable<any> {
     return this.userDataSubject.asObservable();
   }
@@ -42,7 +47,7 @@ export class AuthService {
     return this.userIdSubject.asObservable();
   }
 
- 
+
   signOut() {
     localStorage.clear();
     this.router.navigate(['login']);
@@ -66,36 +71,26 @@ export class AuthService {
     return jwtHelper.decodeToken(token);
   }
 
-  getUserFirstNameFromLocalStorage(): string | null {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-  
-    if (loggedInUser) {
-      const userObject = JSON.parse(loggedInUser);
-      return userObject.firstName;
-    }
-  
-    return null; 
-  }
-
+ 
   getUserId(): number | null {
     const loggedInUser = localStorage.getItem('loggedInUser');
-  
+
     if (loggedInUser) {
       const userObject = JSON.parse(loggedInUser);
       return userObject.userId;
     }
-  
+
     return null;
   }
- 
+
   getUserRole(): string | null {
     const loggedInUser = localStorage.getItem('loggedInUser');
-  
+
     if (loggedInUser) {
       const userObject = JSON.parse(loggedInUser);
       return userObject.role;
     }
-  
+
     return null;
   }
   renewToken(tokenApi: TokenApiModel) {
