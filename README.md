@@ -30,33 +30,58 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 # Screenshots
-
+# User's View
 ## SignUp Form
 
-![Screenshot (10)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/949fe69a-4711-47ac-954f-5f0f002d3f80)
+![Screenshot (63)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/677a69b5-930f-42f9-ab16-98d1c3319e69)
 
 ## Login Form
 
-![Screenshot (9)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/9d5345e5-823e-41e6-a89a-ed16e1ed5093)
+![Screenshot (61)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/d49270fc-9d8d-4896-982f-60d67b737ad9)
+
 
 ## All Products
 
-![Screenshot (11)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/17e575df-35bf-4091-aceb-bbf634ed54c5)
+![Screenshot (65)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/8faeed24-b17e-4aa1-af26-4701dd6df97c)
+
 
 ## Filter Products
 
-![Screenshot (12)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/7e26e6ec-3498-4340-a3fa-9c84b1e22da6)
+![Screenshot (67)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/a77c6e97-cbac-4aba-847f-394e45a5e610)
 
-## Search Product
 
-![Screenshot (13)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/f1464f1b-32df-4dd4-b5e6-6d1438a884b1)
+## About Us
+![Screenshot (69)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/04025de6-1c7f-4590-b570-6a80cd93c1ab)
 
-## Empty Cart
+## Contact Us
+![Screenshot (71)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/40e90cd3-9ebe-4b91-bef3-d6797c0653af)
 
-![Screenshot (14)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/783bb312-c18a-4342-a049-3ce56f86d9b0)
+## Wishlist
+![Screenshot (73)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/66d8c3b9-b0c9-4d05-b976-01c8c68ce512)
 
-## Cart Details
+## Cart 
+![Screenshot (75)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/d7627478-a1df-4031-8965-1719ec27e2b9)
 
-![Screenshot (15)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/abb5ea69-3ecf-410c-a24a-a660d83623ba)
+## Single Product
+![Screenshot (77)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/4facf40d-5b60-42aa-958c-4a0afa4b828a)
+
+# Admin's View
+
+## Food List
+![Screenshot (80)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/b0c8f86a-59a9-4826-b12c-a4cbddef340a)
+
+## Add Food
+![Screenshot (82)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/4e9b409f-3689-47ec-a206-ceac887d9c2f)
+
+## Edit Food
+![Screenshot (84)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/4ff20ff8-46f8-44f4-9bae-e9073514c0a0)
+
+## User List
+![Screenshot (86)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/97c5c315-b734-4e9f-8be6-56d5f34d867f)
+
+## Order List
+![Screenshot (88)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/2919d95a-3ff2-40a5-9b4e-2857bb71a9c4)
+
+
 
 
