@@ -19,7 +19,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { SearchFoodComponent } from './components/search-food/search-food.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
-import { PaymentComponent } from './components/payment/payment.component';
+
 import { SignupComponent } from './components/signup/signup.component';
 import { ViewdetailsComponent } from './components/viewdetails/viewdetails.component';
 import { AboutComponent } from './components/about/about.component';
@@ -43,6 +43,9 @@ import { FoodTypeFilterPipe } from './pipe/food-filter.pipe';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AdminprofileComponent } from './components/adminprofile/adminprofile.component';
+import { CalendarModule } from 'angular-calendar';
+
+import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 
 
 @NgModule({
@@ -55,7 +58,7 @@ import { AdminprofileComponent } from './components/adminprofile/adminprofile.co
     SearchFoodComponent,
     CheckoutComponent,
     LoginComponent,
-    PaymentComponent,
+ 
     SignupComponent,
     ViewdetailsComponent,
     AboutComponent,
@@ -76,7 +79,9 @@ import { AdminprofileComponent } from './components/adminprofile/adminprofile.co
     FooterComponent,
     FoodTypeFilterPipe,
     WishlistComponent,
-    AdminprofileComponent
+    AdminprofileComponent,
+ 
+    AdmindashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,8 @@ import { AdminprofileComponent } from './components/adminprofile/adminprofile.co
     NgToastModule,
     ToastrModule.forRoot(),
     NgConfirmModule,
-    NgArrayPipesModule
+    NgArrayPipesModule,
+    
     
   
   ],

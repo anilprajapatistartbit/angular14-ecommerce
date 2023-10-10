@@ -31,7 +31,7 @@
                             <tr class="text-center"  *ngFor="let item of wishlist;  let i=index">
                               <td class="product-remove" style="cursor: pointer;" (click)="removeFromWishlist(i)"><a ><span class="ion-ios-close"></span></a></td>
                               
-                              <td class="img-prod"><img class="img-fluid" [src]="item.images[0].url" alt="Colorlib Template"></td>
+                              <td class="img-prod"><img class="img-fluid" [src]="item.images[1].url" alt="Colorlib Template"></td>
                               
                               <td class="product-name">
                                   <h3>{{item.name}}</h3>

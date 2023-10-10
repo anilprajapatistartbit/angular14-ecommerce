@@ -8,7 +8,7 @@ export const roleguardGuard: CanActivateFn = (route, state) => {
 const service1=inject(Router)
   var role=service.getUserRole()
  if(role=='Admin'){
-   return service1.navigateByUrl('/admin');
+   return service1.navigateByUrl('/admindashboard');
   
  }else{
   return true;

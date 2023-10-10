@@ -1,5 +1,7 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/css/ionicons.min.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="sidebar">
   <div class="dropdown" [ngClass]="{'open': isDropdownOpen}" (click)="toggleDropdown()">
     <a class="dropbtn" style="cursor: pointer;">
@@ -15,3 +17,4 @@
   <a  routerLink="/userlist"><i class="fas fa-user" style="margin-right: 4px;"></i>User Listing</a>
   <a  routerLink="/login" (click)="logout()"><i class="fas fa-sign-out-alt" style="margin-right: 4px;cursor: pointer;"></i>Logout</a>
 </div>
+

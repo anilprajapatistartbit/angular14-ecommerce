@@ -31,6 +31,7 @@ import { rolesGuard } from './guard/roles.guard';
 import { FooterComponent } from './components/footer/footer.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AdminprofileComponent } from './components/adminprofile/adminprofile.component';
+import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 
 
 
@@ -60,7 +61,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent},
   { path: 'fooddetails/:orderId', component: FoodDetailsComponent},
   { path: 'profile', component: AdminprofileComponent},
-
+  { path: 'admindashboard', component: AdmindashboardComponent},
   { path: 'addfood', component: AddfoodComponent},
   { path: 'address', component: AddressComponent},
   { path: 'admin', component: AdminComponent,canActivate:[rolesGuard]},

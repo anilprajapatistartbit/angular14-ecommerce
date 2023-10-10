@@ -19,6 +19,7 @@ export class CartService {
   this.userId = loggedInUser ? JSON.parse(loggedInUser).userId : '';
     this.getCartItemsFromLocalStorage();
     this.getWishlistItemsFromLocalStorage();
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
   }
 
   calculateTotal(): number {

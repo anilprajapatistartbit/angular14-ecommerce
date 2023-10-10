@@ -22,7 +22,7 @@ export class AddfoodComponent {
       name: ['', Validators.required],
       type: ['', Validators.required],
       price: ['', Validators.required],
-      quantity: ['', Validators.required],
+     
       desc: ['',Validators.required]
     });
     this.toastr.toastrConfig.positionClass = 'toast-bottom-right';

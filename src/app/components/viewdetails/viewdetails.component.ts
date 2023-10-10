@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Food } from '../../models/food';
 import { CartService } from '../../services/cart.service';
@@ -17,7 +17,7 @@ fruits: any[] = [];
 veggies: any[] = [];
 relatedProducts: Food[] = [];
 
-  constructor(private route: ActivatedRoute,private cartService: CartService,private api:ApiService) {}
+  constructor(private route: ActivatedRoute,private cartService: CartService,private api:ApiService,private router: Router) {}
 
   ngOnInit(): void {
     const foodId = this.route.snapshot.paramMap.get('id');
@@ -49,7 +49,16 @@ relatedProducts: Food[] = [];
       }
     }
   }
+  reloadPage(): void {
+    const foodId = this.route.snapshot.paramMap.get('id');
   
+   
+    this.router.navigateByUrl(`/viewdetail/${foodId}`).then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    });
+  }
   
   onThumbnailClick(imageId: string) {
     // Find the image object with the matching imageId

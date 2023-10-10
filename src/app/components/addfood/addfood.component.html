@@ -1,42 +1,46 @@
 <app-admin></app-admin>
 <app-adminheader></app-adminheader>
-<div class="container col-md-8" >
-    <h1 ><u>Add Food</u></h1>
-    <form [formGroup]="addForm" (ngSubmit)="addFood()" >
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input formControlName="name" type="text" class="form-control" id="Name">
-        <small *ngIf="addForm.controls['name'].dirty && addForm.hasError('required','name')" class="text-danger">*Name is required*</small>
-      </div>
-      <div class="mb-3">
-        <label for="type" class="form-label">Type</label>
-        <input formControlName="type" type="text" class="form-control" id="Type">
-        <small *ngIf="addForm.controls['type'].dirty && addForm.hasError('required','type')" class="text-danger">*Type is required*</small>
-      </div>
-      <div class="mb-3">
-        <label for="price" class="form-label">Price</label>
-        <input formControlName="price" type="number" class="form-control" id="Price">
-        <small *ngIf="addForm.controls['price'].dirty && addForm.hasError('required','price')" class="text-danger">*Price is required*</small>
-      </div>
-      <div class="mb-3">
-        <label for="quantity" class="form-label">Quantity</label>
-        
-        <input formControlName="quantity" type="number" class="form-control" id="Quantity">
-        <small *ngIf="addForm.controls['quantity'].dirty && addForm.hasError('required','quantity')" class="text-danger">*Quantity is required*</small>
-    
-      </div>
-      <div class="mb-3">
-        <label for="desc" class="form-label">Description</label>
-        <textarea formControlName="desc" class="form-control" id="Description"></textarea>
-        <small *ngIf="addForm.controls['desc'].dirty && addForm.hasError('required','desc')" class="text-danger">*Description is required*</small>
-      </div>
-      <div class="mb-3">
-        <img *ngFor="let url of urls" [src]="url"><br>
-        <input type="file" (change)="onSelect($event)" multiple>
-      </div>
-      
-    <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Add Product</button> 
-    <button type="submit" class="btn btn-primary" routerLink="/foodlist" style="margin-left:10px;">Cancel</button> 
-    </form>
-  </div>
-  
+<div class="container col-md-8">
+  <h1><u>Add Food</u></h1>
+  <form [formGroup]="addForm" (ngSubmit)="addFood()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="Name">
+      <small *ngIf="addForm.controls['name'].dirty && addForm.hasError('required','name')" class="text-danger">*Name is
+        required*</small>
+    </div>
+    <div class="mb-3">
+      <label for="type" class="form-label">Type</label>
+      <input formControlName="type" type="text" class="form-control" id="Type">
+      <small *ngIf="addForm.controls['type'].dirty && addForm.hasError('required','type')" class="text-danger">*Type is
+        required*</small>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input formControlName="price" type="number" class="form-control" id="Price">
+      <small *ngIf="addForm.controls['price'].dirty && addForm.hasError('required','price')" class="text-danger">*Price
+        is required*</small>
+    </div>
+    <!-- <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity</label>
+
+      <input formControlName="quantity" type="number" class="form-control" id="Quantity">
+      <small *ngIf="addForm.controls['quantity'].dirty && addForm.hasError('required','quantity')"
+        class="text-danger">*Quantity is required*</small>
+
+    </div> -->
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <textarea formControlName="desc" class="form-control" id="Description"></textarea>
+      <small *ngIf="addForm.controls['desc'].dirty && addForm.hasError('required','desc')"
+        class="text-danger">*Description is required*</small>
+    </div>
+    <div class="mb-3">
+      <img *ngFor="let url of urls" [src]="url"><br>
+      <input type="file" (change)="onSelect($event)" multiple>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Add Product</button>
+    <button type="submit" class="btn btn-primary" routerLink="/foodlist" style="margin-left:10px;">Cancel</button>
+  </form>
+</div>

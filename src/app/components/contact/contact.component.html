@@ -89,7 +89,7 @@
             <div class="form-group">
               <input formControlName="FirstName" type="text" class="form-control" id="FirstName" placeholder="Your First Name">
               <div class="errors" *ngIf="!contactForm.controls['FirstName']?.valid && (contactForm.controls['FirstName']?.dirty || contactForm.controls['FirstName']?.touched)">
-                <div *ngIf="contactForm.controls['FirstName']?.errors?.['required']" class="text-danger">FirstName is required</div>
+                <small *ngIf="contactForm.controls['FirstName']?.errors?.['required']" class="text-danger">*FirstName is required*</small>
 
               </div>
 
@@ -97,21 +97,21 @@
             <div class="form-group">
               <input formControlName="LastName" type="text" class="form-control" placeholder="Your Last Name">
               <div class="errors" *ngIf="!contactForm.controls['LastName']?.valid && (contactForm.controls['LastName']?.dirty || contactForm.controls['LastName']?.touched)">
-                <div *ngIf="contactForm.controls['LastName']?.errors?.['required']" class="text-danger">LastName is required</div>
+                <small *ngIf="contactForm.controls['LastName']?.errors?.['required']" class="text-danger">*LastName is required*</small>
 
               </div>
             </div>
             <div class="form-group">
               <input formControlName="Email" type="text" class="form-control" placeholder="Your Email">
               <div class="errors" *ngIf="!contactForm.controls['Email']?.valid && (contactForm.controls['Email']?.dirty || contactForm.controls['Email']?.touched)">
-                <div *ngIf="contactForm.controls['Email']?.errors?.['required']" class="text-danger">Email is required</div>
-                <div *ngIf="contactForm.controls['Email']?.errors?.['email']" class="text-danger">Invalid email format</div>
+                <small *ngIf="contactForm.controls['Email']?.errors?.['required']" class="text-danger">*Email is required*</small>
+                <small *ngIf="contactForm.controls['Email']?.errors?.['email']" class="text-danger">*Invalid email format*</small>
               </div>
             </div>
             <div class="form-group">
               <input formControlName="Mobile" type="text" class="form-control" placeholder="Your Mobile">
               <div class="errors" *ngIf="!contactForm.controls['Mobile']?.valid && (contactForm.controls['Mobile']?.dirty || contactForm.controls['Mobile']?.touched)">
-                <div *ngIf="contactForm.controls['Mobile']?.errors?.['required']" class="text-danger">Mobile is required</div>
+                <small *ngIf="contactForm.controls['Mobile']?.errors?.['required']" class="text-danger">*Mobile is required*</small>
 
               </div>
             </div>
@@ -119,7 +119,7 @@
               <textarea formControlName="Message" name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
           
             <div class="errors" *ngIf="!contactForm.controls['Message']?.valid && (contactForm.controls['Message']?.dirty || contactForm.controls['Message']?.touched)">
-              <div *ngIf="contactForm.controls['Message']?.errors?.['required']" class="text-danger">Message is required</div>
+              <small *ngIf="contactForm.controls['Message']?.errors?.['required']" class="text-danger">*Message is required*</small>
             </div>
           </div>
             <div class="form-group">

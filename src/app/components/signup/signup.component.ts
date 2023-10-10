@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { matchpassword } from 'src/app/shared/matchpassword.validator';
+
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmPasswordValidator } from 'src/app/shared/confirm-password.validator';

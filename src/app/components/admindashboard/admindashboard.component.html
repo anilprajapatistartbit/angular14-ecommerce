@@ -1,0 +1,57 @@
+<app-admin></app-admin>
+<app-adminheader></app-adminheader>
+
+
+<div class="row">
+    <div class="col-lg-3 col-6" style="margin-left: 160px;">
+      <div class="small-box bg-info" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div>
+            <h3>{{ordersCount}}</h3>
+            <p>Total Orders</p>
+          </div>
+          <div>
+            <i class='fas fa-shopping-bag' style='font-size:100px'></i>
+          </div>
+        </div>
+        <div style="margin-top: 10px;">
+          <a   routerLink="/orderlist" class="small-box-footer" style="text-align: center;">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-3 col-6" >
+      <div class="small-box bg-info" style="display: flex; flex-direction: column; align-items: center; padding: 10px;background-color: yellow;">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div>
+            <h3>{{userCount}}</h3>
+            <p>Users</p>
+          </div>
+          <div>
+            <i class="fa fa-user" style="font-size:100px"></i>
+          </div>
+        </div>
+        <div style="margin-top: 10px;" >
+          <a routerLink="/userlist" class="small-box-footer" style="text-align: center;">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="col-lg-3 col-6" >
+      <div class="small-box bg-info" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div>
+            <h3>{{foodCount}}</h3>
+            <p>Total Products</p>
+          </div>
+          <div>
+            <i class="fab fa-product-hunt" style="font-size:100px"></i>
+          </div>
+        </div>
+        <div style="margin-top: 10px;" >
+          <a   routerLink="/foodlist" class="small-box-footer" style="text-align: center;">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+   

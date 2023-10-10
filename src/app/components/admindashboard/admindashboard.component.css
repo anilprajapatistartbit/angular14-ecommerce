@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+    padding: 20px;
+  }
+  
+  /* Small boxes styles */
+  .small-box {
+    background-color: #00bcd4;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 20px; /* Adjust the margin between boxes */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a better look */
+  }
+  
+  .small-box h3 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add margin below the heading */
+  }
+  
+  .small-box p {
+    font-size: 18px;
+    margin-bottom: 20px; /* Add margin below the paragraph */
+  }
+  
+  .small-box a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .small-box a:hover {
+    text-decoration: underline;
+  }
