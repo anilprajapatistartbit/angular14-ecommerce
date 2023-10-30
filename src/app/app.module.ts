@@ -43,8 +43,7 @@ import { FoodTypeFilterPipe } from './pipe/food-filter.pipe';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AdminprofileComponent } from './components/adminprofile/adminprofile.component';
-import { CalendarModule } from 'angular-calendar';
-
+import {CalendarModule} from '@syncfusion/ej2-angular-calendars';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 
 
@@ -96,6 +95,8 @@ import { AdmindashboardComponent } from './components/admindashboard/admindashbo
     ToastrModule.forRoot(),
     NgConfirmModule,
     NgArrayPipesModule,
+    CalendarModule
+ 
     
     
   

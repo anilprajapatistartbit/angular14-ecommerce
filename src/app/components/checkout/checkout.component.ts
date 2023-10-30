@@ -155,8 +155,7 @@ console.log(formData);
     this.apiService.createBilling(formData).subscribe(
       (response) => {
         if (response && response.id) { // Assuming 'id' is the property representing the billing details ID
-          this.toastr.success('Billing Added Successfully');
-          
+        
           // Extract the billingId and store it in local storage
           const billingId = response.id;
           localStorage.setItem('billingId', billingId.toString());
@@ -167,7 +166,8 @@ console.log(formData);
           this.myForm.reset();
         } else {
           console.log('Unexpected response:', response);
-          alert('Something went wrong');
+          this.toastr.success('Billing Added Successfully');
+          
         }
       },
       (error) => {

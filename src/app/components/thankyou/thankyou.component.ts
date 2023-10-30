@@ -63,6 +63,7 @@ console.log(billingid);
           console.log('API Response:', response);
           localStorage.removeItem('cartItems_');
           localStorage.removeItem('billingId');
+          this.cartService.clearCart();
         },
         (error) => {
           console.error('API Error:', error);

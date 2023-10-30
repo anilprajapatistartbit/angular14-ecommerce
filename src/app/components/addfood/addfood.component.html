@@ -21,14 +21,7 @@
       <small *ngIf="addForm.controls['price'].dirty && addForm.hasError('required','price')" class="text-danger">*Price
         is required*</small>
     </div>
-    <!-- <div class="mb-3">
-      <label for="quantity" class="form-label">Quantity</label>
 
-      <input formControlName="quantity" type="number" class="form-control" id="Quantity">
-      <small *ngIf="addForm.controls['quantity'].dirty && addForm.hasError('required','quantity')"
-        class="text-danger">*Quantity is required*</small>
-
-    </div> -->
     <div class="mb-3">
       <label for="desc" class="form-label">Description</label>
       <textarea formControlName="desc" class="form-control" id="Description"></textarea>

@@ -1,41 +1,4 @@
-<!-- <div class="container" style="margin-top:20px;">
-    <h1><u>Get in Touch</u></h1>
-    <form [formGroup]="contactForm" (ngSubmit)="contact()">
-      <div class="mb-3">
-        <label for="FirstName" class="form-label">First Name</label>
-        <input formControlName="FirstName" type="text" class="form-control" id="FirstName">
-    
-      </div>
-      <div class="mb-3">
-        <label for="LastName" class="form-label">Last Name</label>
-        <input formControlName="LastName" type="text" class="form-control" id="LastName">
-    
-      </div>
-      <div class="mb-3">
-        <label for="Email" class="form-label">Email</label>
-        <input formControlName="Email" type="text" class="form-control" id="Email">
-        <div class="errors" *ngIf="!contactForm.controls['Email']?.valid && (contactForm.controls['Email']?.dirty || contactForm.controls['Email']?.touched)">
-            <div *ngIf="contactForm.controls['Email']?.errors?.['required']">Email is required</div>
-            <div *ngIf="contactForm.controls['Email']?.errors?.['email']">Invalid email format</div>
-          </div>
-    
-      </div>
-      <div class="mb-3">
-        <label for="Mobile" class="form-label">Mobile</label>
-        <input formControlName="Mobile" type="text" class="form-control" id="Mobile">
-    
-      </div>
-      <div class="mb-3">
-        <label for="Message" class="form-label">Message</label>
-        <input formControlName="Message" type="text" class="form-control" id="Message">
-    
-      </div>
- 
-      
-      <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Send Message</button>
-    </form>
-  </div>
-   -->
+
 
 
    <div class="hero-wrap hero-bread" style="background-image: url('assets/bg_1.jpg');">
@@ -74,15 +37,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row block-9">
-        <div class="col-md-6 order-md-last d-flex">
-        <div class="col-sm-12" id="map">
-
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.274257380938!2d-70.56068388481569!3d41.45496659976631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e52963ac45bbcb%3A0xf05e8d125e82af10!2sDos%20Mas!5e0!3m2!1sen!2sus!4v1671220374408!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-        </div>
-    </div>
-      </div> -->
+    
       <div class="row block-9">
         <div class="col-md-6 order-md-last d-flex">
           <form action="#" class="bg-white p-5 contact-form" [formGroup]="contactForm" (ngSubmit)="contact()">

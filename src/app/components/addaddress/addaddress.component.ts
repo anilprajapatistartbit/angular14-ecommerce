@@ -44,38 +44,33 @@ export class AddaddressComponent {
       // Display validation error messages if the form is invalid
       // this.validateAllFormFields(this.addressForm);
     }
- 
-        this.http.post("https://localhost:7005/api/addresses", {
-      userId:userId,
+    this.http
+    .post("https://localhost:7005/api/addresses", {
+      userId: userId,
       country: this.addressForm.value.country,
       state: this.addressForm.value.state,
-      city:this.addressForm.value.city,
-      streetAddress:this.addressForm.value.streetAddress,
-      zipcode:this.addressForm.value.zipcode
+      city: this.addressForm.value.city,
+      streetAddress: this.addressForm.value.streetAddress,
+      zipcode: this.addressForm.value.zipcode.toString()
 
-      
     }, { responseType: 'text' })
     .subscribe(
-      res => {
-        if (res === 'Address saved successfully') {
-          this.toastr.success("Address Added Successfully");
-      
-          this.addressForm.reset();
-          this.router.navigate(['/checkout']);
-        } else {
-          console.log("Unexpected response:", res);
-          alert("Something went wrong");
-        }
+      () => {
+        this.toastr.success("Address Added Successfully");
+        this.addressForm.reset();
+        this.router.navigate(['/checkout']);
       },
-      err => {
-        console.error(err);
-        if (err.error && err.error.errors) {
-          console.log("Validation errors:", err.error.errors);
+      (err) => {
+        if (err.error && err.error.Message) {
+          this.toastr.error(err.error.Message);
+        } else {
+          this.toastr.error("Something went wrong.");
         }
-        alert("Something went wrong");
+        console.error(err);
       }
     );
-  }
+  
 
 
   }
+}

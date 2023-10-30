@@ -44,14 +44,14 @@
       <div *ngIf="food.images" style="display: inline-flex;">
         <div *ngFor="let image of food.images; let i = index">
           <span style="position: relative;">
-            <img [src]="image.url" alt="Food Image" class="img-thumbnail" />
+            <img [src]="image.url" alt="Food Image" class="img-thumbnail"  />
             <button class="btn btn-danger btn-sm" style="position: absolute; right: 5px;" (click)="removeImage(i)">✕</button>
           </span>
         </div>
       </div>
       <div class="form-group">
         <label for="newImage">Add New Image:</label>
-        <input type="file" id="newImage" (change)="onImageChange($event)" name="newImage" class="form-control" accept="image/*">
+        <input type="file" id="newImage" (change)="onImageChange($event)" name="newImage" class="form-control" accept="image/*" multiple>
       </div>
     </div>
 

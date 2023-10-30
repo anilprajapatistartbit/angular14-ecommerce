@@ -34,17 +34,4 @@
   .card-body p {
     margin-bottom: 5px;
   }
-  /* Add your custom button styling here */
-.custom-button {
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Padding for the button */
-    cursor: pointer; /* Show a pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition on hover */
-  }
-  
-  .custom-button:hover {
-    background-color: #0056b3; /* Darker blue color on hover */
-  }
   

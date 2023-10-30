@@ -12,6 +12,7 @@ export class AdmindashboardComponent {
   userCount: number=0;
   foodCount: number=0;
   ordersCount:number=0;
+  categoriesCount:number=0;
   foods: Food[] = [];
   constructor(private api: ApiService) {} // Inject your API service here
 
@@ -35,7 +36,25 @@ export class AdmindashboardComponent {
         console.error('Error fetching users:', error);
       }
     );
-  
+    this.api.getFoods().subscribe(
+      (foods: Array<{ type: string }>) => {
+        const uniqueTypes = new Set();
+    
+        foods.forEach((food) => {
+          const type = food.type;
+          uniqueTypes.add(type);
+        });
+    
+        this.categoriesCount = uniqueTypes.size;
+        console.log(`Count of unique types: ${this.categoriesCount}`);
+      },
+      (error) => {
+        console.error('Error fetching foods:', error);
+      }
+    );
+    
+    
+    
     this.api.getOrder().subscribe(
       (order) => {
         this.ordersCount = order.length;

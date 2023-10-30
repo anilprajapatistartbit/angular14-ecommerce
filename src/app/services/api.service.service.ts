@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Food } from '../models/food';
@@ -76,7 +76,9 @@ export class ApiService {
   createFood(food: Food): Observable<Food> {
     return this.http.post<Food>(`${this.apiUrlFood}/AddFoodWithImages`, food);
   }
-
+  // addFoodWithImages(foodData: FormData) {
+  //   return this.http.post<any>(`${this.apiUrlFood}/AddFoodWithImages`, foodData);
+  // }
   deleteFood(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrlFood}/DeleteFood/${id}`);
   }

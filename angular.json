@@ -26,7 +26,6 @@
             ],
             "styles": [
               "src/styles.css",
-         
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/CSS/style.css",
               "src/assets/CSS/open-iconic-bootstrap.min.css",
@@ -41,16 +40,14 @@
               "src/assets/CSS/flaticon.css",
               "src/assets/CSS/icomoon.css",
               "src/assets/CSS/bootstrap/bootstrap-grid.css",
-              "src/assets/CSS/bootstrap/bootstrap-reboot.css"
-      
-
+              "src/assets/CSS/bootstrap/bootstrap-reboot.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/js/owl.carousel.min.js", 
+              "src/assets/js/owl.carousel.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-          
-              "src/assets/js/jquery.min.js", 
+              "src/assets/js/jquery.min.js",
               "src/assets/js/jquery-migrate-3.0.1.min.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js",
@@ -65,8 +62,6 @@
               "src/assets/js/google-map.js",
               "src/assets/js/main.js"
             ]
-            
-            
           },
           "configurations": {
             "production": {
@@ -126,12 +121,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": [
               "./node_modules/jspdf/dist/jspdf.min.js",
               "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
-         
             ]
           }
         }

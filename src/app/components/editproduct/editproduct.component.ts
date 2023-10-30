@@ -37,29 +37,35 @@ export class EditproductComponent {
   }
 
   onImageChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.food.images.push({ id: 0, url: e.target.result, foodId: this.foodId });
-      };
-      reader.readAsDataURL(file);
+    const files: FileList = event.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i);
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.food.images.push({ id: 0, url: e.target.result, foodId: this.foodId });
+        };
+
+        reader.readAsDataURL(file);
+      }
     }
   }
-
   removeImage(index: number) {
     this.food.images.splice(index, 1);
   }
 
   updateFood() {
-    // Convert image URLs to an array of Image objects
+  
     const images: Image[] = this.food.images.map((image) => ({
-      id: 0, // You can set the ID appropriately or remove it if it's auto-generated on the server
+      id: 0,
       url: image.url,
       foodId: this.foodId,
     }));
 
-    // Set the `images` property of the `food` object
+  
     this.food.images = images;
 
     this.apiService.updateFood(this.foodId, this.food).subscribe(

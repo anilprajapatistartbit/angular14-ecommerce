@@ -4,6 +4,7 @@ import { Food } from '../../models/food';
 
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service.service';
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-addfood',
   templateUrl: './addfood.component.html',
@@ -16,7 +17,8 @@ export class AddfoodComponent {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private router :Router
   ) {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -66,6 +68,8 @@ export class AddfoodComponent {
           this.toastr.success('Food added successfully');
           this.addForm.reset();
           this.urls = [];
+          this.router.navigate(['/foodlist']);
+
         },
         (error) => {
           console.error('Error adding food:', error);

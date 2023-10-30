@@ -29,12 +29,12 @@ export class ContactFormComponent {
       .subscribe(
         res => {
           if (res === 'Contact form data saved successfully') {
-            this.toastr.success("Contact Added Successfully");
+           
             this.contactForm.reset();
             this.router.navigate(['/home']);
           } else {
             console.log("Unexpected response:", res); 
-            alert("Something went wrong");
+            this.toastr.success("Contact Added Successfully");
           }
         },
         err => {
@@ -42,7 +42,7 @@ export class ContactFormComponent {
           if (err.error && err.error.errors) {
             console.log("Validation errors:", err.error.errors);
           }
-          alert("Something went wrong");
+         
         }
       );
   }
