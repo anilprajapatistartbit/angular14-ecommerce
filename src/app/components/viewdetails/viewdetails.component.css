@@ -28,3 +28,67 @@
     width: 355px;
     height: 260px;
   }
+
+  
+  .main-image {
+    width: 100%;
+    cursor: pointer;
+    /* transition: transform 0.3s; */
+  }
+  
+ 
+  .related-images {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .related-image {
+    width: 120px; 
+    height: 120px; 
+    cursor: pointer;
+ 
+
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+  }
+  
+  .related-image img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .related-image:last-child {
+    margin-right: 0;
+  }
+  
+  
+  .main-image-container {
+    width: 690px; 
+    height: 350px; 
+    overflow: hidden;
+    position: relative;
+  }
+  .main { 
+    display: flex; 
+} 
+
+.main img { 
+   cursor: crosshair;
+
+} 
+
+
+.zoom-preview { 
+    height: 350px; 
+    width: 500px; 
+    /* border: 1px solid #000;  */
+    margin-left: 20px; 
+    background-repeat: no-repeat; 
+} 
+  
+
+  

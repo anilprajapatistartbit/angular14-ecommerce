@@ -10,18 +10,24 @@
     </div>
   </div>
 </div>
-
 <section class="ftco-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 mb-5 ftco-animate" *ngIf="food">
-        <!-- <lib-ngx-image-zoom
-        [thumbImage]=selectedImage
-        [fullImage]=selectedImage
-    ></lib-ngx-image-zoom> -->
-        <img [src]="selectedImage" alt="{{ food.name }}" class="hidden-image">
+        <div class="main-image-container main">
+          <!-- Main Product Image -->
+          <img [src]="selectedImage" id="gfg-img" alt="{{ food.name }}" class="main-image" (click)="toggleImageSize()">
+          	<div class="zoom-preview"></div> 
+        </div>
+        <!-- Related Images -->
+        <div class="related-images">
+          <div class="related-image" *ngFor="let image of food.images" (click)="onThumbnailClick(image.id)">
+            <img [src]="image.url" alt="{{ food.name }}">
+          </div>
+        </div>
+        
       </div>
-      <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+      <div class="col-lg-4 product-details pl-md-5 ftco-animate" style="margin-left: 140px;">
         <h3>{{food.name}}</h3>
         <div class="rating d-flex">
           <p class="text-left mr-4">
@@ -48,7 +54,7 @@
               <div class="select-wrap">
                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                 <select name="" id="" class="form-control">
-                  <option value="">Small</option>
+                  <option value="" >Small</option>
                   <option value="">Medium</option>
                   <option value="">Large</option>
                   <option value="">Extra Large</option>
@@ -164,3 +170,9 @@
     </div>
   </section>
 </div>
+
+
+
+
+
+

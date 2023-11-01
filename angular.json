@@ -61,6 +61,7 @@
               "src/assets/js/scrollax.min.js",
               "src/assets/js/google-map.js",
               "src/assets/js/main.js"
+              
             ]
           },
           "configurations": {
