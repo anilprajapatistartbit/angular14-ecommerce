@@ -63,7 +63,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ![Screenshot (75)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/d7627478-a1df-4031-8965-1719ec27e2b9)
 
 ## Single Product
-![Screenshot (77)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/4facf40d-5b60-42aa-958c-4a0afa4b828a)
+![Screenshot (90)](https://github.com/anilprajapatistartbit/angular14-ecommerce/assets/133846396/4df9e119-21db-4833-858d-e5abc0a86162)
 
 # Admin's View
 
