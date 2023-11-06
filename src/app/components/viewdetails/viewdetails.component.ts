@@ -16,7 +16,7 @@ export class ViewdetailsComponent implements AfterViewInit {
   veggies: any[] = [];
   relatedProducts: Food[] = [];
   isLargeImage = true;
-
+  showShortDescription = true;
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -54,7 +54,9 @@ export class ViewdetailsComponent implements AfterViewInit {
       }
     }
   }
-
+  toggleDescription() {
+    this.showShortDescription = !this.showShortDescription;
+  }
  
   
   reloadPage(): void {

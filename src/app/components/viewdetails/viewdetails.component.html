@@ -36,7 +36,7 @@
             <a href="#"><span class="ion-ios-star-outline"></span></a>
             <a href="#"><span class="ion-ios-star-outline"></span></a>
             <a href="#"><span class="ion-ios-star-outline"></span></a>
-            <a href="#"><span class="ion-ios-star-outline"></span></a>
+           
           </p>
           <p class="text-left mr-4">
             <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
@@ -46,8 +46,19 @@
           </p>
         </div>
         <p class="price"><span>&#8377;{{ food.price | number:'1.2-2' }}</span></p>
-        <p>{{food.description}}
+        <p>
+          <ng-container *ngIf="showShortDescription">
+            {{ food.description.substring(0, 100) }}
+            <span *ngIf="food.description.length > 100">...</span>
+            <a class="read-more-link" href="javascript:void(0)" (click)="toggleDescription()">Read more</a>
+          </ng-container>
+          <ng-container *ngIf="!showShortDescription">
+            {{ food.description }}
+            <a class="read-less-link" href="javascript:void(0)" (click)="toggleDescription()">Read less</a>
+          </ng-container>
         </p>
+        
+        
         <div class="row mt-4">
           <div class="col-md-6">
             <div class="form-group d-flex">
