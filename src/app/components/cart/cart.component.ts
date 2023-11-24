@@ -63,20 +63,28 @@ getShippingCharge(): number | string {
   }
 }
 
+calculatePriceWithTax() : number | string{
+  const total = this.getTotalPrice() 
+  const taxAmount = total * (6 / 100); //gst rate is 12 in fruits and veggies
+  
+  return taxAmount;
+}
 getTotalPrice(): number {
   return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 getvaluewithshipping(): string {
   const shippingCharge = Number(this.getShippingCharge());
   const grandTotal = Number(this.getGrandTotal());
+  const taxCharge = Number(this.calculatePriceWithTax()); // Add this line
 
   if (shippingCharge !== 0) {
-    const totalValue = shippingCharge + grandTotal;
+    const totalValue = shippingCharge + grandTotal + taxCharge; // Include taxCharge
     return totalValue.toFixed(2);
   } else {
-    return this.getGrandTotal().toFixed(2);
+    return (grandTotal + taxCharge).toFixed(2); // Include taxCharge
   }
 }
+
 
 }
 

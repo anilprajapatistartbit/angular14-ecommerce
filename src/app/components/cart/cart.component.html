@@ -114,7 +114,10 @@
             <span>Delivery</span>
             <span>&#x20B9;{{ getShippingCharge() }}</span>
           </p>
-
+          <p class="d-flex">
+            <span>Taxes</span>
+            <span>&#x20B9;{{ calculatePriceWithTax() }}</span>
+          </p>
           <hr>
           <p class="d-flex total-price">
             <span>Total</span>
